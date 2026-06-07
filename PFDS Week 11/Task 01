@@ -1,0 +1,4 @@
+#Task 1: Function Call
+def hello():
+    print("hello world")
+hello()
