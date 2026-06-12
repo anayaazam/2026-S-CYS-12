@@ -12,5 +12,7 @@
     (CEA- ECAT)
     (term project)
     (reference_material:mitopencourseware)
+    (26 lectures + slides)
     (python)
+    
   
