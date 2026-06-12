@@ -1,5 +1,5 @@
 #    2026-S-CYS-12
-    Semester 1
+    CYS Semester 1 Coursework
 #  CMPE-111L AICT  
     (WEEK 1-16)
     (term project + assignment)
