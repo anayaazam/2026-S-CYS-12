@@ -1,2 +1,4 @@
 # 2026-S-CYS-12
 # Semester 1
+# CMPE-111L AICT
+# CMPE-112L PFDS
