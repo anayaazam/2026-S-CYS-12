@@ -1,5 +1,5 @@
-"""""" 2026-S-CYS-12""""""
-"""""""Semester 1""""""""
+#2026-S-CYS-12
+""   Semester 1   ""
 #  CMPE-111L AICT  
     (WEEK 1-16)
     (term project + assignment)
