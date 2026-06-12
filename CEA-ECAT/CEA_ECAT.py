@@ -44,17 +44,22 @@ def view_questions():
     if not questions:
         print("No questions in bank.")
         return
-    for i, q in enumerate(questions, 1):
+    i = 1
+    for q in questions:
         print(f"\n[{i}] ({q['subject']}) {q['q']}")
-        for letter, choice in zip("ABCD", q["choices"]):
-            mark = " ✓" if letter == q["answer"] else ""
-            print(f" {letter}. {choice}{mark}")
+        j = 0
+        for letter in "ABCD":
+            mark = " ?" if letter == q["answer"] else ""
+            print(f" {letter}. {q['choices'][j]}{mark}")
+            j += 1
+        i += 1
 def add_question():
     print("\n-- Add New Question --")
     subject  = input("Subject: ").strip()
     text     = input("Question: ").strip()
     choices  = [input(f"Choice {l}: ").strip() for l in "ABCD"]
     answer   = input("Correct answer (A/B/C/D): ").strip().upper()
+    subject = subject.title()  # Capitalize first letter
     if answer not in "ABCD":
         print("Invalid answer key. Question not added.")
         return
@@ -77,8 +82,8 @@ def question_stats():
     subjects = {}
     for q in questions:
         subjects[q["subject"]] = subjects.get(q["subject"],0) + 1
-    for subj, count in subjects.items():
-        print(f"  {subj}: {count}")
+    for subj in subjects:
+        print(f"  {subj}: {subjects[subj]}")
     sep()
 def view_all_results():
     if not all_results:
@@ -87,8 +92,10 @@ def view_all_results():
     sep()
     print(f"{'#':<4} {'Name':<20} {'Roll':<12} {'Score':<8} {'%':<8} {'Grade':<14} {'Time'}")
     sep()
-    for i, r in enumerate(all_results, 1):
+    i = 1
+    for r in all_results:
         print(f"{i:<4} {r['name']:<20} {r['roll']:<12} {r['score']:<8} {r['pct']:<8.1f} {r['grade']:<14} {r['time']}")
+        i += 1
     sep()
 def view_detailed_result():
     view_all_results()
@@ -106,11 +113,14 @@ def view_detailed_result():
     sep()
     print(f"Result for {r['name']}  |  Roll: {r['roll']}  |  Time: {r['time']}")
     sep()
-    for i, q in enumerate(questions):
+    i = 0
+    while i < len(questions):
+        q = questions[i]
         given  = r["answers"].get(i, "S")
-        status = "SKIP" if given == "S" else ("✓" if given == q["answer"] else "✗")
+        status = "SKIP" if given == "S" else ("?" if given == q["answer"] else "?")
         print(f"Q{i+1}. {q['q']}")
         print(f"     Your answer: {given}  |  Correct: {q['answer']}  |  {status}")
+        i += 1
     sep()
     print(f"Score: {r['score']}  |  {r['pct']:.1f}%  |  {r['grade']}")
     sep()
@@ -143,8 +153,8 @@ def admin_portal():
         "8":("Logout",                   None),}
     while True:
         print("\n-- Admin Menu --")
-        for k, (label, _) in menu.items():
-            print(f"  {k}. {label}")
+        for k in menu:
+            print(f"  {k}. {menu[k][0]}")
         choice = input("Choose: ").strip()
         if choice == "8":
             print("Logged out.")
@@ -156,18 +166,22 @@ def admin_portal():
 def exam_rules():
     print("EXAM RULES & MARKING SCHEME")
     print("""   INSTRUCTIONS:\n1. The exam contains multiple-choice questions (MCQs).\n2. Enter A,B,C,or D to select an answer.
-3. Enter S to skip a question — no marks are deducted for skipping./n4. Type SUBMIT at any question to end the exam early.
+3. Enter S to skip a question ? no marks are deducted for skipping.\n4. Type SUBMIT at any question to end the exam early.
 5. The exam auto-submits once all questions have been answered.
     MARKING SCHEME:\n Correct Answer: +4 marks \n Wrong Answer  : -1 mark \n Skipped       : 0 marks
-    GRADE BOUNDARIES: \n EXCELLENT    :80% and above \n GOOD         :65% – 79% \n AVERAGE      :50% – 64% \n BELOW AVERAGE:Below 50%
+    GRADE BOUNDARIES: \n EXCELLENT    :80% and above \n GOOD         :65% ? 79% \n AVERAGE      :50% ? 64% \n BELOW AVERAGE:Below 50%
   """)
 def run_exam(name, roll):
     print("\nExam starting... Good luck!\n")
     answers = {}
-    for i, q in enumerate(questions):
+    i = 0
+    while i < len(questions):
+        q = questions[i]
         print(f"Q{i+1}/{len(questions)}. [{q['subject']}] {q['q']}")
-        for letter, choice in zip("ABCD", q["choices"]):
-            print(f"   {letter}. {choice}")
+        j = 0
+        for letter in "ABCD":
+            print(f"   {letter}. {q['choices'][j]}")
+            j += 1
         while True:
             ans = input("Answer (A/B/C/D / S=Skip / SUBMIT): ").strip().upper()
             if ans in ("A", "B", "C", "D", "S"):
@@ -175,19 +189,23 @@ def run_exam(name, roll):
                 break
             if ans == "SUBMIT":
                 print("Exam submitted early.")
-                return save_result(name, roll,answers)
+                return save_result(name, roll, answers)
             print("Invalid input. Try again.")
-    return save_result(name,roll,answers)
-def save_result(name,roll,answers):
+        i += 1
+    return save_result(name, roll, answers)
+def save_result(name, roll, answers):
     correct = wrong = skipped = 0
-    for i, q in enumerate(questions):
+    i = 0
+    while i < len(questions):
+        q = questions[i]
         given = answers.get(i, "S")
         if given == "S":
             skipped += 1
         elif given == q["answer"]:
-            correct+= 1
+            correct += 1
         else:
-            wrong+= 1
+            wrong += 1
+        i += 1
     max_score = len(questions) * CORRECT_MARKS
     score     = correct * CORRECT_MARKS + wrong * WRONG_MARKS
     pct       = (score / max_score) * 100 if max_score else 0
@@ -198,7 +216,7 @@ def save_result(name,roll,answers):
               "correct": correct, "wrong": wrong, "skipped": skipped}
     all_results.append(result)
     sep()
-    print(f"RESULT — {name}  |  Roll: {roll}  |  {timestamp}")
+    print(f"RESULT ? {name}  |  Roll: {roll}  |  {timestamp}")
     sep()
     print(f"Correct: {correct}  |  Wrong: {wrong}  |  Skipped: {skipped}")
     print(f"Score:   {score} / {max_score}")
@@ -207,14 +225,17 @@ def save_result(name,roll,answers):
     sep()
     show = input("Show per-question review? (Y/N): ").strip().upper()
     if show == "Y":
-        for i, q in enumerate(questions):
+        i = 0
+        while i < len(questions):
+            q = questions[i]
             given  = answers.get(i, "S")
-            status = "SKIP" if given == "S" else ("✓" if given == q["answer"] else "x")
+            status = "SKIP" if given == "S" else ("?" if given == q["answer"] else "x")
             print(f"Q{i+1}. {q['q']}")
             print(f"You: {given} | Correct: {q['answer']} | {status}")
+            i += 1
 def student_portal():
     print("\n      STUDENT PORTAL")
-    if not login(STUDENT_USER,STUDENT_PASS):
+    if not login(STUDENT_USER, STUDENT_PASS):
         return
     name = input("Full Name: ").strip()
     roll = input("Roll Number: ").strip()
@@ -224,18 +245,18 @@ def student_portal():
         print("2.Start Exam")
         print("3.Logout")
         choice = input("Choose:").strip()
-        if choice =="1":
+        if choice == "1":
             exam_rules()
-        elif choice =="2":
+        elif choice == "2":
             run_exam(name, roll)
-        elif choice =="3":
+        elif choice == "3":
             print("Logged out.")
             break
         else:
             print("Invalid choice.")
 def main():
     print("-"*30)
-    print(" ECAT EXAM APPLICATION — Dual Portal System")
+    print(" ECAT EXAM APPLICATION ? Dual Portal System")
     print("-"*30)
     while True:
         print("1. Admin Portal")
