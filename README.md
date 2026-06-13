@@ -2,21 +2,23 @@
 
 #   2026-S-CYS-12
      CE-CYS Semester 1 Coursework
-    (FEB-JUNE) 2026
+     (FEB-JUNE) 2026
+
 #  CMPE-111L Applications of Information and Communication Technology
     (WEEK 1-16)
     (term project + assignment)
     (reference_material:
-     pythonforeveryone
-     introductiontocomputerscience)
+    pythonforeveryone
+    introductiontocomputerscience)
     (snap, python)
+
 #  CMPE-112L Programming Fundamentals and Data Science
     (WEEK1-4,7,9-13,15-16)
     (CEA- ECAT)
     (term project)
     (reference_material:
-     mitopencourseware
-     Prof.Ana Bell --> 26 lectures + slides)
+    mitopencourseware
+    Prof.Ana Bell --> 26 lectures + slides)
     (python)
     
   
