@@ -7,7 +7,7 @@
      CMPE-112L PFDS
 
 #  CMPE-111L Applications of Information and Communication Technology
-    (WEEK 1-16)
+    (WEEK 1-15)
     (term project + assignment)
     (reference_material:
     pythonforeveryone
