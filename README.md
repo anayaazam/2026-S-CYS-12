@@ -3,6 +3,8 @@
 #   2026-S-CYS-12
      CE-CYS Semester 1 Coursework
      (FEB-JUNE) 2026
+     CMPE-111L AICT
+     CMPE-112L PFDS
 
 #  CMPE-111L Applications of Information and Communication Technology
     (WEEK 1-16)
