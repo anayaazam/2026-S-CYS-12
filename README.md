@@ -8,12 +8,13 @@
 
 #  CMPE-111L Applications of Information and Communication Technology
     (WEEK 1-15)
+     (snap   (week 1-7))     as .pdf
+     (python (week 8-15))    as .py
     (term project + assignment)
     (reference_material:
     pythonforeveryone
     introductiontocomputerscience)
-    (snap (week 1-7),python(week 8-15))
-
+   
 #  CMPE-112L Programming Fundamentals and Data Science
     (WEEK1-4,7,9-13,15-16)
     (CEA- ECAT)
