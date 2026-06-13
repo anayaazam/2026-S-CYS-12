@@ -1,4 +1,4 @@
-<img width="1280" height="1285" alt="uet" src="https://github.com/user-attachments/assets/3e1d49eb-7971-4ed6-9166-20e8e1a64791" />
+#   <img width="130" height="130" alt="uet" src="https://github.com/user-attachments/assets/3e1d49eb-7971-4ed6-9166-20e8e1a64791" />
 
 #   2026-S-CYS-12
      CE-CYS Semester 1 Coursework
