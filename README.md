@@ -12,7 +12,7 @@
     (reference_material:
     pythonforeveryone
     introductiontocomputerscience)
-    (snap, python)
+    (snap (week 1-7),python(week 8-15))
 
 #  CMPE-112L Programming Fundamentals and Data Science
     (WEEK1-4,7,9-13,15-16)
