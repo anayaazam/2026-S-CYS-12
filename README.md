@@ -14,8 +14,8 @@
     (CEA- ECAT)
     (term project)
     (reference_material:
-     mitopencourseware)
-    (Prof.Ana Bell --> 26 lectures + slides)
+     mitopencourseware
+     Prof.Ana Bell --> 26 lectures + slides)
     (python)
     
   
