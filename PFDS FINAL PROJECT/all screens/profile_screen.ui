@@ -1,0 +1,644 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ui version="4.0">
+ <class>ProfileScreen</class>
+ <widget class="QWidget" name="pageProfile">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1080</width>
+    <height>660</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string>QWidget { background-color: #0d0d1a; }</string>
+  </property>
+  <layout class="QHBoxLayout" name="profileMainLayout">
+   <property name="leftMargin">
+    <number>20</number>
+   </property>
+   <property name="topMargin">
+    <number>20</number>
+   </property>
+   <property name="rightMargin">
+    <number>20</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
+   <property name="spacing">
+    <number>20</number>
+   </property>
+   <item>
+    <widget class="QFrame" name="profileLeftPanel">
+     <property name="maximumWidth">
+      <number>280</number>
+     </property>
+     <property name="minimumWidth">
+      <number>240</number>
+     </property>
+     <property name="styleSheet">
+      <string>QFrame { background-color: #1a1a2e; border-radius: 12px; }</string>
+     </property>
+     <layout class="QVBoxLayout" name="profileLeftLayout">
+      <property name="leftMargin">
+       <number>20</number>
+      </property>
+      <property name="topMargin">
+       <number>25</number>
+      </property>
+      <property name="rightMargin">
+       <number>20</number>
+      </property>
+      <property name="bottomMargin">
+       <number>20</number>
+      </property>
+      <property name="spacing">
+       <number>8</number>
+      </property>
+      <property name="alignment">
+       <flag>Qt::AlignTop|Qt::AlignHCenter</flag>
+      </property>
+      <item>
+       <widget class="QLabel" name="profileAvatarLabel">
+        <property name="text">
+         <string>👤</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="styleSheet">
+         <string>QLabel { color: #a0a0b0; font-size: 56px; background: transparent; }</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="profileDisplayNameLabel">
+        <property name="text">
+         <string>Ann</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="styleSheet">
+         <string>QLabel { color: #e0e0e0; font-size: 20px; font-weight: bold; background: transparent; }</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="profileUsernameLabel">
+        <property name="text">
+         <string>@ann2026</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="styleSheet">
+         <string>QLabel { color: #a0a0b0; font-size: 13px; font-style: italic; background: transparent; }</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="profileChooseAvatarLabel">
+        <property name="text">
+         <string>CHOOSE AVATAR</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="styleSheet">
+         <string>QLabel { color: #00d4aa; font-size: 10px; font-weight: bold; background: transparent; }</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="profileAvatarSelectorRow">
+        <property name="alignment">
+         <flag>Qt::AlignCenter</flag>
+        </property>
+        <property name="spacing">
+         <number>4</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="profileAv1Btn">
+          <property name="text">
+           <string>1</string>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>44</width>
+            <height>44</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>44</width>
+            <height>44</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string>QPushButton { background-color: #0f3460; border: 2px solid #00d4aa; border-radius: 6px; color: #e0e0e0; }</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="profileAv2Btn">
+          <property name="text">
+           <string>2</string>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>44</width>
+            <height>44</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>44</width>
+            <height>44</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string>QPushButton { background-color: transparent; border: 2px solid transparent; border-radius: 6px; color: #e0e0e0; } QPushButton:hover { background-color: #0f3460; }</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="profileAv3Btn">
+          <property name="text">
+           <string>3</string>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>44</width>
+            <height>44</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>44</width>
+            <height>44</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string>QPushButton { background-color: transparent; border: 2px solid transparent; border-radius: 6px; color: #e0e0e0; } QPushButton:hover { background-color: #0f3460; }</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="profileAv4Btn">
+          <property name="text">
+           <string>4</string>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>44</width>
+            <height>44</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>44</width>
+            <height>44</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string>QPushButton { background-color: transparent; border: 2px solid transparent; border-radius: 6px; color: #e0e0e0; } QPushButton:hover { background-color: #0f3460; }</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QFrame" name="profileStatsBox">
+        <property name="styleSheet">
+         <string>QFrame { background-color: #0d0d1a; border-radius: 8px; }</string>
+        </property>
+        <layout class="QVBoxLayout">
+         <property name="leftMargin">
+          <number>15</number>
+         </property>
+         <property name="topMargin">
+          <number>10</number>
+         </property>
+         <property name="rightMargin">
+          <number>15</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <property name="spacing">
+          <number>4</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="profileLevelLabel">
+           <property name="text">
+            <string>Level 2 · Learner</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="styleSheet">
+            <string>QLabel { color: #00d4aa; font-size: 12px; font-weight: bold; background: transparent; }</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="profileXpLabel">
+           <property name="text">
+            <string>Total XP: 720 XP</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="styleSheet">
+            <string>QLabel { color: #e0e0e0; font-size: 12px; background: transparent; }</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="profileStreakLabel">
+           <property name="text">
+            <string>Active Streak: 🔥 5 Days</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="styleSheet">
+            <string>QLabel { color: #e94560; font-size: 12px; background: transparent; }</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="profileRightLayout">
+     <property name="spacing">
+      <number>10</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="profileBadgesTitleLabel">
+       <property name="text">
+        <string>Achievements &amp; Badges</string>
+       </property>
+       <property name="styleSheet">
+        <string>QLabel { color: #e0e0e0; font-size: 20px; font-weight: bold; }</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QScrollArea" name="profileBadgesScrollArea">
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <property name="styleSheet">
+        <string>QScrollArea { background-color: #1a1a2e; border-radius: 12px; border: none; } QScrollBar:vertical { background: #0d0d1a; width: 8px; border-radius: 4px; } QScrollBar::handle:vertical { background: #0f3460; border-radius: 4px; }</string>
+       </property>
+       <widget class="QWidget" name="profileBadgesContents">
+        <property name="styleSheet">
+         <string>QWidget { background-color: #1a1a2e; }</string>
+        </property>
+        <layout class="QGridLayout" name="profileBadgesGrid">
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <property name="topMargin">
+          <number>10</number>
+         </property>
+         <property name="rightMargin">
+          <number>10</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <property name="spacing">
+          <number>12</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QFrame" name="profileBadgeCard1">
+           <property name="minimumHeight">
+            <number>130</number>
+           </property>
+           <property name="maximumHeight">
+            <number>130</number>
+           </property>
+           <property name="styleSheet">
+            <string>QFrame { background-color: #0d0d1a; border-radius: 10px; }</string>
+           </property>
+           <layout class="QVBoxLayout">
+            <property name="alignment">
+             <flag>Qt::AlignCenter</flag>
+            </property>
+            <property name="spacing">
+             <number>3</number>
+            </property>
+            <property name="leftMargin">
+             <number>8</number>
+            </property>
+            <property name="topMargin">
+             <number>8</number>
+            </property>
+            <property name="rightMargin">
+             <number>8</number>
+            </property>
+            <property name="bottomMargin">
+             <number>8</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="profileBadge1Icon">
+              <property name="text">
+               <string>👋</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="styleSheet">
+               <string>QLabel { font-size: 28px; background: transparent; }</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="profileBadge1Name">
+              <property name="text">
+               <string>First Sign</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="styleSheet">
+               <string>QLabel { color: #ffaa00; font-size: 11px; font-weight: bold; background: transparent; }</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="profileBadge1Desc">
+              <property name="text">
+               <string>Complete your first lesson</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="styleSheet">
+               <string>QLabel { color: #a0a0b0; font-size: 9px; background: transparent; }</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QFrame" name="profileBadgeCard2">
+           <property name="minimumHeight">
+            <number>130</number>
+           </property>
+           <property name="maximumHeight">
+            <number>130</number>
+           </property>
+           <property name="styleSheet">
+            <string>QFrame { background-color: #151525; border-radius: 10px; }</string>
+           </property>
+           <layout class="QVBoxLayout">
+            <property name="alignment">
+             <flag>Qt::AlignCenter</flag>
+            </property>
+            <property name="spacing">
+             <number>3</number>
+            </property>
+            <property name="leftMargin">
+             <number>8</number>
+            </property>
+            <property name="topMargin">
+             <number>8</number>
+            </property>
+            <property name="rightMargin">
+             <number>8</number>
+            </property>
+            <property name="bottomMargin">
+             <number>8</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="profileBadge2Icon">
+              <property name="text">
+               <string>🔒</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="styleSheet">
+               <string>QLabel { font-size: 28px; color: #505060; background: transparent; }</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="profileBadge2Name">
+              <property name="text">
+               <string>Week Warrior</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="styleSheet">
+               <string>QLabel { color: #606070; font-size: 11px; font-weight: bold; background: transparent; }</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="profileBadge2Desc">
+              <property name="text">
+               <string>Achieve a 7-day streak</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="styleSheet">
+               <string>QLabel { color: #454555; font-size: 9px; background: transparent; }</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QFrame" name="profileBadgeCard3">
+           <property name="minimumHeight">
+            <number>130</number>
+           </property>
+           <property name="maximumHeight">
+            <number>130</number>
+           </property>
+           <property name="styleSheet">
+            <string>QFrame { background-color: #151525; border-radius: 10px; }</string>
+           </property>
+           <layout class="QVBoxLayout">
+            <property name="alignment">
+             <flag>Qt::AlignCenter</flag>
+            </property>
+            <property name="spacing">
+             <number>3</number>
+            </property>
+            <property name="leftMargin">
+             <number>8</number>
+            </property>
+            <property name="topMargin">
+             <number>8</number>
+            </property>
+            <property name="rightMargin">
+             <number>8</number>
+            </property>
+            <property name="bottomMargin">
+             <number>8</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="profileBadge3Icon">
+              <property name="text">
+               <string>🔒</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="styleSheet">
+               <string>QLabel { font-size: 28px; color: #505060; background: transparent; }</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="profileBadge3Name">
+              <property name="text">
+               <string>Quiz Ace</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="styleSheet">
+               <string>QLabel { color: #606070; font-size: 11px; font-weight: bold; background: transparent; }</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="profileBadge3Desc">
+              <property name="text">
+               <string>Score 100% on any quiz</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="styleSheet">
+               <string>QLabel { color: #454555; font-size: 9px; background: transparent; }</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QFrame" name="profileBadgeCard4">
+           <property name="minimumHeight">
+            <number>130</number>
+           </property>
+           <property name="maximumHeight">
+            <number>130</number>
+           </property>
+           <property name="styleSheet">
+            <string>QFrame { background-color: #151525; border-radius: 10px; }</string>
+           </property>
+           <layout class="QVBoxLayout">
+            <property name="alignment">
+             <flag>Qt::AlignCenter</flag>
+            </property>
+            <property name="spacing">
+             <number>3</number>
+            </property>
+            <property name="leftMargin">
+             <number>8</number>
+            </property>
+            <property name="topMargin">
+             <number>8</number>
+            </property>
+            <property name="rightMargin">
+             <number>8</number>
+            </property>
+            <property name="bottomMargin">
+             <number>8</number>
+            </property>
+            <item>
+             <widget name="profileBadge4Icon" class="QLabel">
+              <property name="text">
+               <string>🔒</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="styleSheet">
+               <string>QLabel { font-size: 28px; color: #505060; background: transparent; }</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="profileBadge4Name">
+              <property name="text">
+               <string>Bilingual Signer</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="styleSheet">
+               <string>QLabel { color: #606070; font-size: 11px; font-weight: bold; background: transparent; }</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="profileBadge4Desc">
+              <property name="text">
+               <string>Use Urdu TTS 10 times</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="styleSheet">
+               <string>QLabel { color: #454555; font-size: 9px; background: transparent; }</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources />
+ <connections />
+</ui>

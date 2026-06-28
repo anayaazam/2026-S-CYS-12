@@ -1,0 +1,286 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ui version="4.0">
+ <class>SpeakScreen</class>
+ <widget class="QWidget" name="pageSpeak">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1080</width>
+    <height>660</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string>QWidget { background-color: #0d0d1a; }</string>
+  </property>
+  <layout class="QHBoxLayout" name="speakMainLayout">
+   <property name="leftMargin">
+    <number>20</number>
+   </property>
+   <property name="topMargin">
+    <number>20</number>
+   </property>
+   <property name="rightMargin">
+    <number>20</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
+   <property name="spacing">
+    <number>20</number>
+   </property>
+   <item>
+    <widget class="QFrame" name="speakCamContainer">
+     <property name="styleSheet">
+      <string>QFrame { background-color: #1a1a2e; border-radius: 10px; }</string>
+     </property>
+     <layout class="QVBoxLayout">
+      <property name="alignment">
+       <flag>Qt::AlignCenter</flag>
+      </property>
+      <item>
+       <widget class="QLabel" name="speakFeedLabel">
+        <property name="text">
+         <string>Camera Offline
+Click 'Start Camera' to spell words.</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="styleSheet">
+         <string>QLabel { color: #a0a0b0; font-size: 14px; background: transparent; }</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="speakRightPanel">
+     <property name="maximumWidth">
+      <number>340</number>
+     </property>
+     <property name="minimumWidth">
+      <number>280</number>
+     </property>
+     <property name="styleSheet">
+      <string>QFrame { background-color: #1a1a2e; border-radius: 10px; }</string>
+     </property>
+     <layout class="QVBoxLayout" name="speakRightLayout">
+      <property name="leftMargin">
+       <number>15</number>
+      </property>
+      <property name="topMargin">
+       <number>15</number>
+      </property>
+      <property name="rightMargin">
+       <number>15</number>
+      </property>
+      <property name="bottomMargin">
+       <number>15</number>
+      </property>
+      <property name="spacing">
+       <number>10</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="speakSentenceHeader">
+        <property name="text">
+         <string>SENTENCE BUILDER</string>
+        </property>
+        <property name="styleSheet">
+         <string>QLabel { color: #00d4aa; font-size: 10px; font-weight: bold; background: transparent; }</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTextEdit" name="speakTextBox">
+        <property name="maximumHeight">
+         <number>80</number>
+        </property>
+        <property name="styleSheet">
+         <string>QTextEdit { background-color: #0d0d1a; color: #e0e0e0; border: 1px solid #0f3460; border-radius: 6px; padding: 4px; font-size: 16px; }</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="speakBtnRow">
+        <property name="spacing">
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="speakSpaceBtn">
+          <property name="text">
+           <string>Space</string>
+          </property>
+          <property name="minimumHeight">
+           <number>28</number>
+          </property>
+          <property name="styleSheet">
+           <string>QPushButton { background-color: #0f3460; color: white; border: none; border-radius: 4px; font-size: 12px; } QPushButton:hover { background-color: #e94560; }</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="speakBackspaceBtn">
+          <property name="text">
+           <string>Backspace</string>
+          </property>
+          <property name="minimumHeight">
+           <number>28</number>
+          </property>
+          <property name="styleSheet">
+           <string>QPushButton { background-color: #0f3460; color: white; border: none; border-radius: 4px; font-size: 12px; } QPushButton:hover { background-color: #e94560; }</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="speakClearBtn">
+          <property name="text">
+           <string>Clear</string>
+          </property>
+          <property name="minimumHeight">
+           <number>28</number>
+          </property>
+          <property name="styleSheet">
+           <string>QPushButton { background-color: #e94560; color: white; border: none; border-radius: 4px; font-size: 12px; } QPushButton:hover { background-color: #0f3460; }</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="speakUrduHeader">
+        <property name="text">
+         <string>URDU TRANSLATION</string>
+        </property>
+        <property name="styleSheet">
+         <string>QLabel { color: #e94560; font-size: 10px; font-weight: bold; background: transparent; }</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="speakUrduFrame">
+        <property name="styleSheet">
+         <string>QFrame { background-color: #0d0d1a; border-radius: 8px; }</string>
+        </property>
+        <layout class="QVBoxLayout">
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <property name="topMargin">
+          <number>8</number>
+         </property>
+         <property name="rightMargin">
+          <number>10</number>
+         </property>
+         <property name="bottomMargin">
+          <number>8</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="speakUrduLabel">
+           <property name="text">
+            <string>یہاں ترجمہ ظاہر ہوگا</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight</set>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+           <property name="styleSheet">
+            <string>QLabel { color: #e0e0e0; font-size: 16px; background: transparent; }</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="speakLangRow">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="speakEnBtn">
+          <property name="text">
+           <string>English</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="minimumHeight">
+           <number>34</number>
+          </property>
+          <property name="styleSheet">
+           <string>QPushButton { background-color: #0f3460; color: white; border: none; border-radius: 4px; } QPushButton:!checked { background-color: #0d0d1a; color: #a0a0b0; }</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="speakUrBtn">
+          <property name="text">
+           <string>Urdu</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="minimumHeight">
+           <number>34</number>
+          </property>
+          <property name="styleSheet">
+           <string>QPushButton { background-color: #0d0d1a; color: #a0a0b0; border: none; border-radius: 4px; } QPushButton:checked { background-color: #0f3460; color: white; }</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="speakSpeakBtn">
+        <property name="text">
+         <string>Speak Sentence</string>
+        </property>
+        <property name="minimumHeight">
+         <number>40</number>
+        </property>
+        <property name="styleSheet">
+         <string>QPushButton { background-color: #008f7a; color: white; border: none; border-radius: 6px; font-size: 13px; font-weight: bold; } QPushButton:hover { background-color: #0f3460; }</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="speakStartBtn">
+        <property name="text">
+         <string>Start Camera</string>
+        </property>
+        <property name="minimumHeight">
+         <number>36</number>
+        </property>
+        <property name="styleSheet">
+         <string>QPushButton { background-color: #0f3460; color: white; border: none; border-radius: 6px; font-size: 13px; } QPushButton:hover { background-color: #e94560; }</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources />
+ <connections />
+</ui>
