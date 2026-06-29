@@ -8,11 +8,11 @@ SignBridge is a full-featured, Duolingo-style desktop application for learning A
 
 ```
 signbridge/
-├── main.py                    # App entry point, sidebar nav, screen router
-├── requirements.txt           # Pinned dependencies
-├── README.md                  # This setup guide
+├── main.py                   # App entry point, sidebar nav, screen router
+├── requirements.txt          # Pinned dependencies
+├── README.md                 # This setup guide
 ├── database/
-│   ├── schema.sql             # All SQLite CREATE TABLE statements
+│   ├── schema.sql            # All SQLite CREATE TABLE statements
 │   └── db_manager.py         # All CRUD — users, progress, quizzes, badges
 ├── auth/
 │   ├── login_screen.py       # Login UI + validation
