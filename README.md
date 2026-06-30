@@ -7,7 +7,7 @@
      CMPE-112L PFDS
 
 #  CMPE-111L Applications of Information and Communication Technology
-    (WEEK 1-15)
+     (WEEK 1-15)
     (snap   (week 1-7))     as .pdf
     (python (week 8-15))    as .py
     (term project + assignment)
@@ -16,8 +16,9 @@
     introductiontocomputerscience:anoverview)
    
 #  CMPE-112L Programming Fundamentals and Data Science
-    (WEEK1-4,7,9-13,15-16)
-    (CEA- ECAT)
+    (lab_reports)            as .pdf
+    (WEEK1-4,7,9-13,15-16)   as .py     
+    (CEA- ECAT)              as .py
     (final_term_project)     as .odg/.pdf/.py/.ui
     (reference_material:
     mitopencourseware
