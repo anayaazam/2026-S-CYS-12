@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ui version="4.0">
+ <class>QuizScreen</class>
+ <widget class="QWidget" name="pageQuiz">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1080</width>
+    <height>660</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string>QWidget { background-color: #0d0d1a; }</string>
+  </property>
+  <layout class="QVBoxLayout" name="quizMainLayout">
+   <property name="leftMargin">
+    <number>20</number>
+   </property>
+   <property name="topMargin">
+    <number>20</number>
+   </property>
+   <property name="rightMargin">
+    <number>20</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
+   <property name="spacing">
+    <number>10</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="quizHeaderLabel">
+     <property name="text">
+      <string>Question 3 of 10  ·  Score: 2</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="styleSheet">
+      <string>QLabel { color: #00d4aa; font-size: 13px; font-weight: bold; }</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="quizQuestionFrame">
+     <property name="styleSheet">
+      <string>QFrame { background-color: #1a1a2e; border-radius: 12px; }</string>
+     </property>
+     <layout class="QVBoxLayout" name="quizQuestionLayout">
+      <property name="leftMargin">
+       <number>30</number>
+      </property>
+      <property name="topMargin">
+       <number>20</number>
+      </property>
+      <property name="rightMargin">
+       <number>30</number>
+      </property>
+      <property name="bottomMargin">
+       <number>20</number>
+      </property>
+      <property name="spacing">
+       <number>12</number>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <item>
+       <widget class="QLabel" name="quizQuestionLabel">
+        <property name="text">
+         <string>Which sign is shown in the image?</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="styleSheet">
+         <string>QLabel { color: #e0e0e0; font-size: 15px; font-weight: bold; background: transparent; }</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout">
+        <item>
+         <spacer>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QFrame" name="quizImageFrame">
+          <property name="minimumSize">
+           <size>
+            <width>180</width>
+            <height>180</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>180</width>
+            <height>180</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string>QFrame { background-color: #0d0d1a; border-radius: 8px; }</string>
+          </property>
+          <layout class="QVBoxLayout">
+           <item>
+            <widget class="QLabel" name="quizImageLabel">
+             <property name="text">
+              <string>[ Sign Image ]</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="styleSheet">
+              <string>QLabel { color: #ffaa00; font-size: 13px; font-weight: bold; background: transparent; }</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="quizChoicesGrid">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="quizChoice1Btn">
+          <property name="text">
+           <string>Letter A</string>
+          </property>
+          <property name="minimumHeight">
+           <number>42</number>
+          </property>
+          <property name="styleSheet">
+           <string>QPushButton { background-color: #0f3460; color: #e0e0e0; border: none; border-radius: 6px; font-size: 13px; } QPushButton:hover { background-color: #e94560; }</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="quizChoice2Btn">
+          <property name="text">
+           <string>Letter B</string>
+          </property>
+          <property name="minimumHeight">
+           <number>42</number>
+          </property>
+          <property name="styleSheet">
+           <string>QPushButton { background-color: #0f3460; color: #e0e0e0; border: none; border-radius: 6px; font-size: 13px; } QPushButton:hover { background-color: #e94560; }</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="quizChoice3Btn">
+          <property name="text">
+           <string>Letter C</string>
+          </property>
+          <property name="minimumHeight">
+           <number>42</number>
+          </property>
+          <property name="styleSheet">
+           <string>QPushButton { background-color: #0f3460; color: #e0e0e0; border: none; border-radius: 6px; font-size: 13px; } QPushButton:hover { background-color: #e94560; }</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="quizChoice4Btn">
+          <property name="text">
+           <string>Letter D</string>
+          </property>
+          <property name="minimumHeight">
+           <number>42</number>
+          </property>
+          <property name="styleSheet">
+           <string>QPushButton { background-color: #0f3460; color: #e0e0e0; border: none; border-radius: 6px; font-size: 13px; } QPushButton:hover { background-color: #e94560; }</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="quizNextBtn">
+     <property name="text">
+      <string>Next Question ➔</string>
+     </property>
+     <property name="minimumHeight">
+      <number>40</number>
+     </property>
+     <property name="styleSheet">
+      <string>QPushButton { background-color: #00d4aa; color: #0d0d1a; border: none; border-radius: 6px; font-size: 13px; font-weight: bold; } QPushButton:hover { background-color: #0f3460; color: white; }</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources />
+ <connections />
+</ui>
