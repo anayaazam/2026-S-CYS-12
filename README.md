@@ -22,7 +22,7 @@
     (final_term_project)     as .odg/.pdf/.py/.ui
     (reference_material:
     mitopencourseware
-    Prof.Ana Bell --> 26 lectures + slides)
+    Prof.Ana Bell --> 26 lectures)
     (python)
     
   
