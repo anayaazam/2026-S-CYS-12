@@ -18,7 +18,7 @@
 #  CMPE-112L Programming Fundamentals and Data Science
     (WEEK1-4,7,9-13,15-16)
     (CEA- ECAT)
-    (final_term_project)     as sides/pdf/.py/.ui
+    (final_term_project)     as .odg/.pdf/.py/.ui
     (reference_material:
     mitopencourseware
     Prof.Ana Bell --> 26 lectures + slides)
