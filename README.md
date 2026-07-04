@@ -8,9 +8,10 @@
 
 #  CMPE-111L Applications of Information and Communication Technology
      (WEEK 1-15)
-     (snap   (week 1-7))     as .pdf
-     (python (week 8-15))    as .py
-     (term project + assignment)
+     (snap   (week 1-7))      as .pdf
+     (python (week 8-15))     as .py
+     (final_term_project      as .py/.pdf
+          + assignment) 
      (reference_material:
      pythonforeveryone
      introductiontocomputerscience:anoverview)
