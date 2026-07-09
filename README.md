@@ -18,8 +18,8 @@
    
 #  CMPE-112L Programming Fundamentals and Data Science
      (python)
-     (lab_reports)            as .pdf
-     (WEEK1-4,7,9-13,15-16)   as .py     
+     (WEEK1-4,7,9-13,15-16)   as .py
+     (lab_reports 1-8,19-15)  as .pdf     
      (CEA- ECAT)              as .py
      (final_term_project)     as .odg/.pdf/.py/.ui
      (reference_material:
