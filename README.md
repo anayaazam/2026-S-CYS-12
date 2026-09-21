@@ -4,8 +4,8 @@
      ==> CE-CYS Semester 1 Coursework
      (FEB-JUNE) 2026
      CMPE-111L AICT
-     ==> CMPE-112L PFDS
-     CE-CYS Semester 2 Couursework
+     CMPE-112L PFDS
+     ==> CE-CYS Semester 2 Coursework
      (SEP-JAN) 2026
      CMPE-211L OOP
      CMPE-332L DBS
