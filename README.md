@@ -1,11 +1,11 @@
 #   <img width="130" height="130" alt="uet" src="https://github.com/user-attachments/assets/3e1d49eb-7971-4ed6-9166-20e8e1a64791" />
 
 #   2026-S-CYS-12
-     => CE-CYS Semester 1 Coursework
+     --> CE-CYS Semester 1 Coursework
      (FEB-JUNE) 2026
      CMPE-111L AICT
      CMPE-112L PFDS
-     => CE-CYS Semester 2 Coursework
+     --> CE-CYS Semester 2 Coursework
      (SEP-JAN) 2026
      CMPE-211L OOP
      CMPE-332L DBS
