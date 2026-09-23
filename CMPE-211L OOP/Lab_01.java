@@ -1,5 +1,5 @@
 // Task 01:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         System.out.println("Hello,Java");
         System.out.println("Hello,World");
@@ -9,7 +9,7 @@ public class Main {
 
 
 // Task 02:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         System.out.println("a");
         System.out.println("b");
@@ -19,7 +19,7 @@ public class Main {
 
 
 // Task 03:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         System.out.println("She said \"hi\"");
         System.out.println("Path: C:\\temp");
@@ -29,7 +29,7 @@ public class Main {
 
 
 // Task 04:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         int age =30;
         System.out.println(age);
@@ -41,7 +41,7 @@ public class Main {
 
 
 // Task 05:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         double age =30.5;
         System.out.println(age);
@@ -54,7 +54,7 @@ public class Main {
 
 
 // Task 06:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         String name = "anaya";
         System.out.println(name);
@@ -66,7 +66,7 @@ public class Main {
 
 
 // Task 07:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         int x = 10;
         var count=10;
@@ -77,7 +77,7 @@ public class Main {
 
 
 // Task 08:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         int x = 0;
         x = "six";
@@ -88,7 +88,7 @@ public class Main {
 
 
 // Task 09:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         int x = 10;
         int y = 12;
@@ -100,7 +100,7 @@ public class Main {
 
 
 // Task 10:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         int x = 10;
         int y = 12;
@@ -114,7 +114,7 @@ public class Main {
 
 
 // Task 11:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         long big = 30000001L ;
         System.out.println(big);
@@ -126,7 +126,7 @@ public class Main {
 
 
 // Task 12:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         char c = 'c';
         System.out.println(c);
@@ -135,7 +135,7 @@ public class Main {
 
 
 // Task 13:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         int max = 987654321;
         max += 1 ;
@@ -147,7 +147,7 @@ public class Main {
 
 
 // Task 14:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         String s = "abcd";
         System.out.println(s);
@@ -157,7 +157,7 @@ public class Main {
 
 
 // Task 15:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         double pi = 3.99;
         int z = (int) pi ;
@@ -170,7 +170,7 @@ public class Main {
 
 
 // Task 16:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         int age =Integer.parseInt("12") ;
         double gpa = Double.parseDouble("3.5");
@@ -182,7 +182,7 @@ public class Main {
 
 
 // Task 17:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         var a = Math.pow(2,10);
         System.out.println(a);
@@ -193,7 +193,7 @@ public class Main {
 
 
 // Task 18:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         System.out.println(7/2);
         System.out.println(7%2);
@@ -203,7 +203,7 @@ public class Main {
 
 
 // Task 19:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         Math.sqrt(16);
         Math.floor(3.7);
@@ -216,7 +216,7 @@ public class Main {
 
 
 // Task 20:
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         int b =10;
         b += 1;
@@ -227,7 +227,7 @@ public class Main {
 
 
 // Task 21:
-public class Main {
+public class Lab_01{
     public static void main(String[] args) {
         int b =10;
         b--;
@@ -241,7 +241,7 @@ public class Main {
 
 // Task 22:
 import java.util.Scanner;
-public class Main {
+public class Lab_01 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Your Name:");
