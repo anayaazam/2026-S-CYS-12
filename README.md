@@ -34,7 +34,7 @@
      (WEEK 1-4)              as .java
      (lab_reports)
 
-#  CMPE-211L Database Systems
+#  CMPE-332L Database Systems
      (sql & c#)
      (WEEK 1-4)
          
