@@ -31,8 +31,12 @@
      Prof.Ana Bell --> 26 lectures)
 
 #  CMPE-211L Object Oriented Programming  
-
+     (java)
+     (WEEK 1-4)              as .java
+     (lab_reports)
 
 #  CMPE-211L Database Systems
-    
+     (sql & c#)
+     (WEEK 1-4)
+         
   
