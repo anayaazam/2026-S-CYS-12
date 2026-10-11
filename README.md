@@ -15,7 +15,7 @@
      (snap   (week 1-7))      as .pdf
      (python (week 8-15))     as .py
      (final_term_project      as .py/.pdf
-          + assignment) 
+          + assignments) 
      (reference_material:
      pythonforeveryone
      introductiontocomputerscience:anoverview)
@@ -27,8 +27,7 @@
      (CEA- ECAT)              as .py
      (final_term_project)     as .odg/.pdf/.py/.ui
      (reference_material:
-     mitopencourseware
-     Prof.Ana Bell --> 26 lectures)
+     mitopencourseware --> Prof.Ana Bell)
 
 #  CMPE-211L Object Oriented Programming  
      (java)
