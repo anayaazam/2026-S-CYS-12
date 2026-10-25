@@ -12,30 +12,32 @@
 
 #  CMPE-111L Applications of Information and Communication Technology
      (WEEK 1-15)
-     (snap   (week 1-7))      as .pdf
-     (python (week 8-15))     as .py
-     (final_term_project      as .py/.pdf
-          + assignments) 
+     (snap   (week 1-7))           as .pdf
+     (python (week 8-13))          as .py
+     (sem_project week_15     
+     + assignments week_14)        as .py/.pdf
      (reference_material:
      pythonforeveryone
      introductiontocomputerscience:anoverview)
    
 #  CMPE-112L Programming Fundamentals and Data Science
      (python)
-     (WEEK 1-4,7,9-13,15-16)  as .py
-     (lab_reports 1-8,10-15)  as .pdf     
-     (CEA- ECAT)              as .py
-     (final_term_project)     as .odg/.pdf/.py/.ui
-     (reference_material:
+     (WEEK 1-4,7,9-13,15-16)       as .py
+     (lab_reports 1-8,10-15)       as .pdf     
+     (CEA- ECAT)                   as .py
+     (sem_project)                 as .odg/.pdf/.py/.ui
+     (reference_material:     
      mitopencourseware --> Prof.Ana Bell)
 
 #  CMPE-211L Object Oriented Programming  
      (java)
-     (WEEK 1-4)              as .java
+     (WEEK 1-6)              as .java
      (lab_reports)
+     (java_tasks)
+     (cep)
 
 #  CMPE-332L Database Systems
      (sql & c#)
-     (WEEK 1-4)
+     (WEEK 1-5)
          
   
