@@ -31,8 +31,8 @@
 
 #  CMPE-211L Object Oriented Programming  
      (java)
-     (WEEK 1-6)                    as .java
-     (lab_reports)                 as .pdf
+     (WEEK 1-7)                    as .java
+     (lab_reports)                as .pdf
      (java_tasks)                  as .java
      (cep- pacman)                 as .java
 
