@@ -1,0 +1,50 @@
+QUERY 1
+SELECT product_name FROM products WHERE list_price BETWEEN 25 AND 98;
+***
+
+
+QUERY 2
+SELECT first_name, last_name FROM employees WHERE notes LIKE '%French%';
+***
+
+
+QUERY 3
+SELECT first_name, last_name FROM employees WHERE notes LIKE '%psychology%';
+***
+
+
+QUERY 4
+SELECT company, country_region FROM customers WHERE city = 'London';
+***
+
+
+QUERY 5
+SELECT id, employee_id, shipper_id FROM orders WHERE employee_id IS NOT NULL;
+***
+
+
+QUERY 6
+SELECT company, id FROM suppliers WHERE id BETWEEN 5 AND 15;
+***
+
+
+QUERY 7
+SELECT product_name FROM products WHERE quantity_per_unit LIKE '%bottles%';
+***
+
+
+QUERY 8
+SELECT product_name, list_price FROM products WHERE product_name LIKE 'C%';
+***
+
+
+QUERY 9
+SELECT product_name FROM products WHERE quantity_per_unit LIKE 
+'%boxes%';
+***
+
+
+QUERY 10
+SELECT city FROM customers WHERE country_region = 'Germany';
+***
+

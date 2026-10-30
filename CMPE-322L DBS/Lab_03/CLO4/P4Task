@@ -1,0 +1,31 @@
+QUERY 01: Without Parenthesis 
+SELECT product_name, category, list_price
+FROM products
+WHERE category = 'Beverages' OR category = 'Condiments' AND list_price > 20;
+***
+-- AND binds tighter than OR, so this is read as:
+-- category = 'Beverages' OR (category = 'Condiments' AND list_price > 20)
+
+
+QUERY 02: With Parenthesis 
+SELECT product_name, category, list_price
+FROM products
+WHERE (category = 'Beverages' OR category = 'Condiments') AND list_price > 20;
+***
+-- Forces BOTH category check BEFORE list_price check → different row set
+
+
+QUERY 03: NULL 
+SELECT product_name, list_price, target_level,
+       list_price * target_level AS stock_value
+FROM products;
+***
+-- Any product where target_level is NULL will show NULL for stock_value
+
+
+QUERY 04: IS NULL 
+SELECT product_name, minimum_reorder_quantity
+FROM products
+WHERE minimum_reorder_quantity IS NULL;
+***
+-- Returns products with NULL target_level

@@ -1,0 +1,28 @@
+QUERY 1
+SELECT DISTINCT country_region FROM customers;
+***
+
+
+QUERY 2
+SELECT first_name, last_name FROM employees WHERE first_name LIKE '%A%' AND first_name NOT LIKE 'A%';
+***
+
+
+QUERY 3
+SELECT company FROM suppliers ORDER BY company ASC;
+***
+
+
+QUERY 4
+SELECT company FROM shippers ORDER BY company ASC;
+***
+
+
+QUERY 5
+SELECT company, address FROM customers WHERE address LIKE '%Str.%';
+***
+
+
+QUERY 6
+SELECT product_name, quantity_per_unit FROM products WHERE quantity_per_unit LIKE '%kg%' OR quantity_per_unit LIKE '%g%';
+***

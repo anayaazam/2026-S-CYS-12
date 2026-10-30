@@ -1,0 +1,190 @@
+Task 1: Cartesian Product of Employees and Shippers
+SELECT 
+    e.id AS EmployeeID,
+    CONCAT(e.first_name, ' ', e.last_name) AS EmployeeName,
+    s.id AS ShipperID,
+    s.company AS ShipperName
+FROM employees e
+CROSS JOIN shippers s;
+***
+
+
+Task 2: Customer-Order-Shipper Combinations (First 3 Chars Match)
+SELECT 
+    c.id AS CustomerID,
+    CONCAT(c.first_name, ' ', c.last_name) AS CustomerName,
+    s.id AS ShipperID,
+    s.company AS ShipperName,
+    LEFT(c.first_name, 3) AS FirstThreeChars
+FROM customers c
+CROSS JOIN orders o
+CROSS JOIN shippers s
+WHERE LEFT(c.first_name, 3) = LEFT(s.company, 3);
+***
+
+
+Task 3: Employee Self-Pairs (No Duplicates)
+SELECT 
+    e1.id AS EmployeeID,
+    CONCAT(e1.first_name, ' ', e1.last_name) AS Employee1Name,
+    e2.id AS Employee2ID,
+    CONCAT(e2.first_name, ' ', e2.last_name) AS Employee2Name
+FROM employees e1
+CROSS JOIN employees e2
+WHERE e1.id < e2.id;
+***
+
+
+Task 4: Full Order Details
+SELECT 
+    o.id AS OrderID,
+    CONCAT(c.first_name, ' ', c.last_name) AS CustomerName,
+    p.product_name AS ProductName,
+    od.quantity AS Quantity,
+    CONCAT(e.first_name, ' ', e.last_name) AS EmployeeName,
+    s.company AS ShipperName
+FROM orders o
+INNER JOIN customers c ON o.customer_id = c.id
+INNER JOIN order_details od ON o.id = od.order_id
+INNER JOIN products p ON od.product_id = p.id
+INNER JOIN employees e ON o.employee_id = e.id
+INNER JOIN shippers s ON o.shipper_id = s.id;
+***
+
+
+Task 5: Products Never Ordered
+S
+    p.id AS ProductID,
+    p.product_name AS ProductName,
+    p.category AS CategoryName,
+    NULL AS SupplierName
+FROM products p
+LEFT JOIN order_details od ON p.id = od.product_id
+WHERE od.id IS NULL;
+***
+
+
+Task 6: Employees With No Orders in Last 6 Months of a Year
+SELECT 
+    e.id AS EmployeeID,
+    CONCAT(e.first_name, ' ', e.last_name) AS EmployeeName
+FROM employees e
+LEFT JOIN orders o 
+    ON e.id = o.employee_id 
+    AND MONTH(o.order_date) BETWEEN 7 AND 12
+    AND YEAR(o.order_date) = 2006
+WHERE o.id IS NULL;
+***
+
+
+Task 7: All Orders (Including Missing Employee/Customer)
+SELECT 
+    o.id AS OrderID,
+    o.customer_id AS CustomerID,
+    CONCAT(c.first_name, ' ', c.last_name) AS CustomerName,
+    o.employee_id AS EmployeeID,
+    CONCAT(e.first_name, ' ', e.last_name) AS EmployeeName
+FROM orders o
+LEFT JOIN customers c ON o.customer_id = c.id
+LEFT JOIN employees e ON o.employee_id = e.id
+UNION
+SELECT 
+    o.id AS OrderID,
+    o.customer_id AS CustomerID,
+    CONCAT(c.first_name, ' ', c.last_name) AS CustomerName,
+    o.employee_id AS EmployeeID,
+    CONCAT(e.first_name, ' ', e.last_name) AS EmployeeName
+FROM orders o
+RIGHT JOIN customers c ON o.customer_id = c.id
+RIGHT JOIN employees e ON o.employee_id = e.id;
+***
+
+
+Task 8: Customers + Orders ("No Order Placed")
+SELECT 
+    c.id AS CustomerID,
+    CONCAT(c.first_name, ' ', c.last_name) AS CustomerName,
+    IFNULL(o.id, 'No Order Placed') AS OrderID
+FROM customers c
+LEFT JOIN orders o ON c.id = o.customer_id;
+***
+
+
+Task 9: Orders Before 9 AM or After 5 PM
+SELECT 
+    o.id AS OrderID,
+    o.order_date AS OrderDate,
+    o.customer_id AS CustomerID
+FROM orders o
+WHERE HOUR(o.order_date) < 9 
+   OR HOUR(o.order_date) > 17;
+***
+
+
+Task 10: Employee Pairs Who Served Same Product
+SELECT DISTINCT
+    p.id AS ProductID,
+    p.product_name AS ProductName,
+    e1.id AS Employee1ID,
+    CONCAT(e1.first_name, ' ', e1.last_name) AS Employee1Name,
+    e2.id AS Employee2ID,
+    CONCAT(e2.first_name, ' ', e2.last_name) AS Employee2Name
+FROM order_details od1
+INNER JOIN orders o1 ON od1.order_id = o1.id
+INNER JOIN order_details od2 ON od1.product_id = od2.product_id
+INNER JOIN orders o2 ON od2.order_id = o2.id
+INNER JOIN employees e1 ON o1.employee_id = e1.id
+INNER JOIN employees e2 ON o2.employee_id = e2.id
+INNER JOIN products p ON od1.product_id = p.id
+WHERE e1.id < e2.id;
+***
+
+
+Task 11: All Suppliers (Including Those With No Products)
+SELECT 
+    s.id AS SupplierID,
+    s.company AS SupplierName
+FROM suppliers s;
+***
+
+
+Task 12: Customers Who Never Placed an Order
+SELECT 
+    c.id AS CustomerID,
+    CONCAT(c.first_name, ' ', c.last_name) AS CustomerName
+FROM customers c
+LEFT JOIN orders o ON c.id = o.customer_id
+WHERE o.id IS NULL;
+***
+
+
+Task 13: Customer Pairs Who Ordered on Same Date
+SELECT DISTINCT
+    c1.id AS Customer1ID,
+    CONCAT(c1.first_name, ' ', c1.last_name) AS Customer1Name,
+    c2.id AS Customer2ID,
+    CONCAT(c2.first_name, ' ', c2.last_name) AS Customer2Name,
+    DATE(o1.order_date) AS OrderDate
+FROM orders o1
+INNER JOIN orders o2 ON DATE(o1.order_date) = DATE(o2.order_date)
+INNER JOIN customers c1 ON o1.customer_id = c1.id
+INNER JOIN customers c2 ON o2.customer_id = c2.id
+WHERE c1.id < c2.id;
+***
+
+
+Task 14: Employee Pairs Who Served Same Customer
+SELECT DISTINCT
+    c.id AS CustomerID,
+    CONCAT(c.first_name, ' ', c.last_name) AS CustomerName,
+    e1.id AS Employee1ID,
+    CONCAT(e1.first_name, ' ', e1.last_name) AS Employee1Name,
+    e2.id AS Employee2ID,
+    CONCAT(e2.first_name, ' ', e2.last_name) AS Employee2Name
+FROM orders o1
+INNER JOIN orders o2 ON o1.customer_id = o2.customer_id
+INNER JOIN customers c ON o1.customer_id = c.id
+INNER JOIN employees e1 ON o1.employee_id = e1.id
+INNER JOIN employees e2 ON o2.employee_id = e2.id
+WHERE e1.id < e2.id;
+***
