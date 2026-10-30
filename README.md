@@ -39,7 +39,8 @@
      (cep:pacman)                 as .java
 
 #  CMPE-332L Database Systems
-     (sql & c#)
-     (WEEK 1-5)
+     (sql, c#, workbench80)
+     (week 1-3)                   as .png/.txt/.docx/.pdf/.cs
+     (week 4-5)                   as .txt/.pdf
          
   
