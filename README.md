@@ -29,7 +29,7 @@
      (cea:ecat_engine)            as .py/.pdf
      (sem_project)                as .odg/.pdf/.py/.ui
      (reference_material:     
-     mitopencourseware:introductiontocsandprogrammingusingpython)
+     mitopencourseware:introtocsandprogrammingusingpython)
 
 #  CMPE-211L Object Oriented Programming  
      (java)
