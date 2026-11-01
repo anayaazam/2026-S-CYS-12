@@ -2,8 +2,6 @@
 
 SignBridge is a full-featured, Duolingo-style desktop application for learning American Sign Language (ASL). It features real-time sign recognition from your webcam, interactive quizzes (Flashcards and real-time signing), comprehensive gamification (streaks, levels, badges, XP), Urdu and English text-to-speech, translation, and beautiful Matplotlib-driven analytics.
 
----
-
 ## Project Structure
 
 ```
