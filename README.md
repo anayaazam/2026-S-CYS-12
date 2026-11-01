@@ -1,46 +1,68 @@
-#   <img width="130" height="130" alt="uet" src="https://github.com/user-attachments/assets/3e1d49eb-7971-4ed6-9166-20e8e1a64791" />
+<img width="130" height="130" alt="uet" src="https://github.com/user-attachments/assets/3e1d49eb-7971-4ed6-9166-20e8e1a64791" />
 
-#   2026-S-CYS-12
-     --> CYS Semester 1 Coursework
-     (FEB-JUN 2026)
-     CMPE-111L AICT
-     CMPE-112L PFDS
-     --> CYS Semester 2 Coursework
-     (SEP-JAN 2027)
-     CMPE-211L OOP
-     CMPE-332L DBS
+# 2026-S-CYS-12
 
-#  CMPE-111L Applications of Information and Communication Technology
-     (WEEK 1-15)
-     (snap)   
-     (week 1-7)                   as .pdf
-     (python) 
-     (week 8-13)                  as .py
-     (sem_project week_15     
-     + assignment week_14)        as .py/.pdf
-     (learning_references:
-     pythonforeveryone
-     introductiontocomputerscience:anoverview)
-   
-#  CMPE-112L Programming Fundamentals and Data Science
-     (python)
-     (WEEK 1-4,7,9-13,15-16)      as .py
-     (lab_reports 1-8,10-15)      as .pdf     
-     (cea:ecat_engine)            as .py/.pdf
-     (sem_project)                as .odg/.pdf/.py/.ui
-     (learning_references:     
-     mitopencourseware:introtocsandprogrammingusingpython)
+Coursework for the CYS program at UET Lahore, organized by semester and course.
 
-#  CMPE-211L Object Oriented Programming  
-     (java)
-     (WEEK 1-7)                   as .java
-     (lab_reports)                as .pdf
-     (java_tasks)                 as .java
-     (cep:pacman)                 as .java
+| Semester | Period | Courses |
+|----------|--------|---------|
+| Semester 1 | Feb – Jun 2026 | CMPE-111L AICT, CMPE-112L PFDS |
+| Semester 2 | Sep 2026 – Jan 2027 | CMPE-211L OOP, CMPE-332L DBS |
 
-#  CMPE-332L Database Systems
-     (sql, c#, workbench80)
-     (week 1-3)                   as .png/.txt/.docx/.pdf/.cs
-     (week 4-6)                   as .txt/.pdf
-         
-  
+---
+
+## Semester 1
+
+### CMPE-111L – Applications of Information and Communication Technology (Weeks 1–15)
+
+- **Weeks 1–7 (Snap):** lab reports as `.pdf`
+- **Weeks 8–13 (Python):** lab tasks as `.py`
+- **Week 14 (assignment) and Week 15 (semester project):** `.py` and `.pdf`
+
+Folder: `CMPE-111L AICT`
+
+### CMPE-112L – Programming Fundamentals and Data Science
+
+- **Labwork (Python):** weeks 1–4, 7, 9–13, 15–16 as `.py` (in `labwork/`)
+- **Lab reports:** labs 1–8 and 10–15 as `.pdf` (in `reports/`)
+- **CEA:** ECAT engine as `.py` with a `.pdf` guide (in `cea/`)
+- **Semester project:** **SignBridge**, a gamified ASL learning app (in `sem_project/`, see its own README)
+
+Folder: `CMPE-112L PFDS`
+
+---
+
+## Semester 2
+
+### CMPE-211L – Object Oriented Programming (Java)
+
+- **Labs 1–7:** `.java` files, one folder per lab (`CMPE-211L OOP Lab_01` to `Lab_07`)
+- **Lab reports:** labs 4–6 and the Java tasks as `.pdf` (`CMPE-211L OOP Lab_Reports`)
+- **Java tasks:** 50 practice tasks (`CMPE-211L OOP Java_Tasks`)
+- **CEP (Pacman game):** coming soon, due *<add date>*
+
+### CMPE-332L – Database Systems (SQL, C#, MySQL Workbench 8.0)
+
+- **Weeks 1–3:** ERD diagram, SQL scripts, C# programs, and `.pdf`/`.docx` reports
+- **Weeks 4–6:** SQL queries (`.txt`) and `.pdf` reports
+- **Northwind sample database:** `Northwind(Data&Structure).sql`
+
+Folder: `CMPE-332L DBS`
+
+---
+
+## Learning References
+
+Books and playlists I used to study alongside the labs (not included in this repo):
+
+- **Python for Everybody:** <!-- TODO: add link -->
+- **Introduction to Computer Science: An Overview:** <!-- TODO: add author/link -->
+- **MIT OpenCourseWare – Introduction to CS and Programming Using Python:** <!-- TODO: add link -->
+- **Java / OOP:** <!-- TODO: add playlist or book -->
+- **Databases / SQL:** <!-- TODO: add playlist or book -->
+
+---
+
+## Author
+
+<!-- Your name, registration number, section -->
