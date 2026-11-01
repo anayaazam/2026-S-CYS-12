@@ -13,11 +13,11 @@
 #  CMPE-111L Applications of Information and Communication Technology
      (WEEK 1-15)
      (snap)   
-     (week 1-7)                    as .pdf
+     (week 1-7)                   as .pdf
      (python) 
-     (week 8-13)                   as .py
+     (week 8-13)                  as .py
      (sem_project week_15     
-     + assignment week_14)         as .py/.pdf
+     + assignment week_14)        as .py/.pdf
      (reference_material:
      pythonforeveryone
      introductiontocomputerscience:anoverview)
@@ -41,6 +41,6 @@
 #  CMPE-332L Database Systems
      (sql, c#, workbench80)
      (week 1-3)                   as .png/.txt/.docx/.pdf/.cs
-     (week 4-5)                   as .txt/.pdf
+     (week 4-6)                   as .txt/.pdf
          
   
