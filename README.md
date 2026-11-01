@@ -18,7 +18,7 @@
      (week 8-13)                  as .py
      (sem_project week_15     
      + assignment week_14)        as .py/.pdf
-     (reference_material:
+     (learning_references:
      pythonforeveryone
      introductiontocomputerscience:anoverview)
    
@@ -28,7 +28,7 @@
      (lab_reports 1-8,10-15)      as .pdf     
      (cea:ecat_engine)            as .py/.pdf
      (sem_project)                as .odg/.pdf/.py/.ui
-     (reference_material:     
+     (learning_references:     
      mitopencourseware:introtocsandprogrammingusingpython)
 
 #  CMPE-211L Object Oriented Programming  
