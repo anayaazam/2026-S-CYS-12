@@ -6,7 +6,7 @@
      CMPE-111L AICT
      CMPE-112L PFDS
      --> CYS Semester 2 Coursework
-     (SEP-JAN 2026)
+     (SEP-JAN 2027)
      CMPE-211L OOP
      CMPE-332L DBS
 
