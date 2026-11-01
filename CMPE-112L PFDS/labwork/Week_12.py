@@ -1,3 +1,4 @@
+import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -10,7 +11,9 @@ class Ui_Form(object):
         self.label_6.setMinimumSize(QtCore.QSize(130, 130))
         self.label_6.setMaximumSize(QtCore.QSize(250, 250))
         self.label_6.setText("")
-        self.label_6.setPixmap(QtGui.QPixmap("../Pictures/Screenshots/University_of_Engineering_and_Technology_Lahore_logo.svg.png"))
+        logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "uet_logo.png")
+        if os.path.exists(logo_path):
+            self.label_6.setPixmap(QtGui.QPixmap(logo_path))
         self.label_6.setScaledContents(True)
         self.label_6.setObjectName("label_6")
         # Empty label (placeholder)

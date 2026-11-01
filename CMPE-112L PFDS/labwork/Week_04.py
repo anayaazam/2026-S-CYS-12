@@ -60,8 +60,8 @@ c=float(input("Please enter your third number: "))
 
 def compare(a,b,c):
     return max(a,b,c)
-max=  max(a,b,c)
-print("The largest number is ",max)
+largest = max(a,b,c)
+print("The largest number is ",largest)
 
 
 
@@ -75,14 +75,14 @@ print(sum_all(112,366,864,345,234,456,567))
 print (sum_all(26,36,67,38,95,85,54,65,63,32,52))
 
 #Task 9: Average(*numbers)
-sum=0
+total=0
 inputs= int(input("Please enter your number of inputs: "))
 for i in range (1,inputs+1):
     num= float(input("Please enter your numbers one by one: "))
-    sum+=num
-def avg(sum,inputs):
-    return sum/inputs
-print("Average of the numbers is ",(avg(sum,inputs)))
+    total+=num
+def avg(total,inputs):
+    return total/inputs
+print("Average of the numbers is ",(avg(total,inputs)))
 
 
 

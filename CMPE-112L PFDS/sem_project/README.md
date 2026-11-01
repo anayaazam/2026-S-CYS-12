@@ -26,6 +26,7 @@ sem_project/
 ├── main.py                    # App entry point, sidebar navigation, screen router
 ├── requirements.txt           # Python dependencies
 ├── test_SignBridge.py         # Unit tests (database, XP, streaks, translation, badges)
+├── test_logic.py              # Unit tests (letter buffer, spaced repetition, quiz engine)
 ├── README.md
 ├── authorization/
 │   ├── login_screen.py        # Login screen and validation
@@ -110,10 +111,10 @@ For real-time practice, place your hand inside the highlighted box and hold the 
 ## Running the Tests
 
 ```bash
-python test_SignBridge.py
+python -m unittest -v
 ```
 
-The tests use a temporary database and clean up after themselves.
+This runs both test files. They use temporary databases and clean up after themselves.
 
 ---
 
@@ -153,12 +154,12 @@ print(f"Added lesson {lesson_id}")
 
 ## Credits
 
-- **Sign-recognition model:** <!-- TODO: who trained it? e.g. "Trained by us on the ASL Alphabet dataset" or "Adapted from <repo name + link>" -->
-- **Dataset:** <!-- TODO: dataset name + link + license -->
-- **Letter smoothing logic (`letter_buffer.py`):** <!-- TODO: credit the original repo/author if this was adapted from one -->
-- **Sign reference images:** <!-- TODO: source of the images in assets/signs -->
-- **Libraries:** PyQt5, TensorFlow/Keras, OpenCV, NumPy, Matplotlib, bcrypt, gTTS, pyttsx3, deep-translator.
+- **Sign-recognition model:** *add who trained it, or the repo and link it came from*
+- **Dataset:** *add dataset name, link and license*
+- **Letter smoothing logic (`letter_buffer.py`):** *add the original repo or author if it was adapted*
+- **Sign reference images:** *add where the images in `assets/signs` came from*
+- **Libraries:** PyQt5, TensorFlow/Keras, OpenCV, NumPy, Matplotlib, bcrypt, gTTS, pyttsx3, pygame, deep-translator.
 
 ## Author
 
-<!-- Anaya Azam, 2026-S-CYS-12 -->
+*add your name, registration number and section*
