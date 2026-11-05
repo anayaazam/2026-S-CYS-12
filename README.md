@@ -11,7 +11,7 @@
 
 ## Semester 1
 
-### CMPE-111L – Applications of Information and Communication Technology (Weeks 1–15)
+### CMPE-111L – Applications of Information and Communication Technology 
 
 - **Weeks 1–7 (Snap):** lab reports as `.pdf`
 - **Weeks 8–13 (Python):** lab tasks as `.py`
@@ -32,14 +32,14 @@ Folder: `CMPE-112L PFDS`
 
 ## Semester 2
 
-### CMPE-211L – Object Oriented Programming (Java)
+### CMPE-211L – Object Oriented Programming 
 
 - **Labs 1–7:** `.java` files, one folder per lab (`CMPE-211L OOP Lab_01` to `Lab_07`)
 - **Lab reports:** labs 4–6 and the Java tasks as `.pdf` (`CMPE-211L OOP Lab_Reports`)
 - **Java tasks:** 50 practice tasks (`CMPE-211L OOP Java_Tasks`)
 - **CEP (Pacman game):** coming soon, due *<add date>*
 
-### CMPE-332L – Database Systems (SQL, C#, MySQL Workbench 8.0)
+### CMPE-332L – Database Systems 
 
 - **Weeks 1–3:** ERD diagram, SQL scripts, C# programs, and `.pdf`/`.docx` reports
 - **Weeks 4–6:** SQL queries (`.txt`) and `.pdf` reports
