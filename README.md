@@ -11,22 +11,22 @@
 
 ## Semester 1
 
-### CMPE-111L – Applications of Information and Communication Technology 
+  ### CMPE-111L – Applications of Information and Communication Technology 
 
-- **Weeks 1–7 (Snap):** lab reports as `.pdf`
-- **Weeks 8–13 (Python):** lab tasks as `.py`
-- **Week 14 (assignment) and Week 15 (semester project):** `.py` and `.pdf`
+  - **Weeks 1–7 (Snap):** lab reports as `.pdf`
+  - **Weeks 8–13 (Python):** lab tasks as `.py`
+  - **Week 14 (assignment) and Week 15 (semester project):** `.py` and `.pdf`
 
-Folder: `CMPE-111L AICT`
+  Folder: `CMPE-111L AICT`
 
-### CMPE-112L – Programming Fundamentals and Data Science
+  ### CMPE-112L – Programming Fundamentals and Data Science
 
-- **Labwork (Python):** weeks 1–4, 7, 9–13, 15–16 as `.py` (in `labwork/`)
-- **Lab reports:** labs 1–8 and 10–15 as `.pdf` (in `reports/`)
-- **CEA:** ECAT engine as `.py` with a `.pdf` guide (in `cea/`)
-- **Semester project:** **SignBridge**, a gamified ASL learning app (in `sem_project/`)
+  - **Labwork (Python):** weeks 1–4, 7, 9–13, 15–16 as `.py` (in `labwork/`)
+  - **Lab reports:** labs 1–8 and 10–15 as `.pdf` (in `reports/`)
+  - **CEA:** ECAT engine as `.py` with a `.pdf` guide (in `cea/`)
+  - **Semester project:** **SignBridge**, a gamified ASL learning app (in `sem_project/`)
 
-Folder: `CMPE-112L PFDS`
+  Folder: `CMPE-112L PFDS`
 
 ---
 
