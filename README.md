@@ -24,7 +24,7 @@ Folder: `CMPE-111L AICT`
 - **Labwork (Python):** weeks 1–4, 7, 9–13, 15–16 as `.py` (in `labwork/`)
 - **Lab reports:** labs 1–8 and 10–15 as `.pdf` (in `reports/`)
 - **CEA:** ECAT engine as `.py` with a `.pdf` guide (in `cea/`)
-- **Semester project:** **SignBridge**, a gamified ASL learning app (in `sem_project/`, see its own README)
+- **Semester project:** **SignBridge**, a gamified ASL learning app (in `sem_project/`)
 
 Folder: `CMPE-112L PFDS`
 
