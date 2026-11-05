@@ -2,8 +2,6 @@
 
 # 2026-S-CYS-12
 
-Coursework for the CYS program at UET Lahore, organized by semester and course.
-
 | Semester | Period | Courses |
 |----------|--------|---------|
 | Semester 1 | Feb – Jun 2026 | CMPE-111L AICT, CMPE-112L PFDS |
@@ -51,18 +49,6 @@ Folder: `CMPE-332L DBS`
 
 ---
 
-## Learning References
-
-Books and playlists I used to study alongside the labs (not included in this repo):
-
-- **Python for Everybody:** <!-- TODO: add link -->
-- **Introduction to Computer Science: An Overview:** <!-- TODO: add author/link -->
-- **MIT OpenCourseWare – Introduction to CS and Programming Using Python:** <!-- TODO: add link -->
-- **Java / OOP:** <!-- TODO: add playlist or book -->
-- **Databases / SQL:** <!-- TODO: add playlist or book -->
-
----
-
 ## Author
 
-<!-- Your name, registration number, section -->
+<!-- Anaya Azam, 2026-S-CYS-12-->
