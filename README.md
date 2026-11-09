@@ -35,7 +35,7 @@ Folder: `CMPE-111L AICT`
 ### CMPE-211L – Object Oriented Programming 
 
 - **Labs 1–7:** `.java` files, one folder per lab (`CMPE-211L OOP Lab_01` to `Lab_07`)
-- **Lab reports:** labs 4–6 and the Java tasks as `.pdf` (`CMPE-211L OOP Lab_Reports`)
+- **Lab reports:** labs 4–7 and the Java tasks as `.pdf` (`CMPE-211L OOP Lab_Reports`)
 - **Java tasks:** 50 practice tasks (`CMPE-211L OOP Java_Tasks`)
 - **CEP (Pacman game):** coming soon, due *<add date>*
 
