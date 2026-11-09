@@ -154,12 +154,12 @@ print(f"Added lesson {lesson_id}")
 
 ## Credits
 
-- **Sign-recognition model:** *add who trained it, or the repo and link it came from*
+- **Sign-recognition model:** *model.h5,GitHub*
 - **Dataset:** *add dataset name, link and license*
-- **Letter smoothing logic (`letter_buffer.py`):** *add the original repo or author if it was adapted*
-- **Sign reference images:** *add where the images in `assets/signs` came from*
+- **Letter smoothing logic (`letter_buffer.py`):** *Anaya Azam*
+- **Sign reference images:** *canva*
 - **Libraries:** PyQt5, TensorFlow/Keras, OpenCV, NumPy, Matplotlib, bcrypt, gTTS, pyttsx3, pygame, deep-translator.
 
 ## Author
 
-*add your name, registration number and section*
+*Anaya Azam, 2026-S-CYS-12*
