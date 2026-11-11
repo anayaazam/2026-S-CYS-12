@@ -11,29 +11,25 @@ WHERE country_region IN ('Sweden', 'Canada');
 SELECT product_name
 FROM products
 WHERE id = ALL (
-    SELECT product_id FROM order_details WHERE quantity = 10
-);
+    SELECT product_id FROM order_details WHERE quantity = 10);
 ***
 
 SELECT product_name
 FROM products
 WHERE id = ANY (
-    SELECT product_id FROM order_details WHERE quantity = 10
-);
+    SELECT product_id FROM order_details WHERE quantity = 10);
 ***
 
 SELECT id
 FROM orders
 WHERE customer_id NOT IN (
-    SELECT id FROM customers WHERE country_region = 'Germany'
-);
+    SELECT id FROM customers WHERE country_region = 'Germany');
 ***
 
 SELECT product_name, list_price
 FROM products
 WHERE list_price > ALL (
-    SELECT list_price FROM products WHERE category = 'Beverages'
-);
+    SELECT list_price FROM products WHERE category = 'Beverages');
 ***
 
 SELECT first_name, last_name
@@ -41,8 +37,7 @@ FROM employees
 WHERE id IN (
     SELECT employee_id FROM orders
     GROUP BY employee_id
-    HAVING COUNT(id) > 10
-);
+    HAVING COUNT(id) > 10);
 ***
 
 SELECT product_name, list_price
@@ -55,8 +50,7 @@ FROM customers
 WHERE (city, country_region) = (
     SELECT c.city, c.country_region
     FROM orders o JOIN customers c ON c.id = o.customer_id
-    WHERE o.id = 30
-);
+    WHERE o.id = 30);
 ***
 
 SELECT first_name, last_name
@@ -85,8 +79,7 @@ SELECT s.company
 FROM suppliers s
 WHERE EXISTS (
     SELECT 1 FROM products p
-    WHERE FIND_IN_SET(s.id, REPLACE(p.supplier_ids, ';', ',')) > 0
-);
+    WHERE FIND_IN_SET(s.id, REPLACE(p.supplier_ids, ';', ',')) > 0);
 ***
 
 SELECT first_name, last_name
@@ -99,8 +92,7 @@ WHERE id IN (
             SELECT id FROM products
             WHERE list_price = (SELECT MAX(list_price) FROM products)
         )
-    )
-);
+    ));
 ***
 
 SELECT p.product_name, c.category
@@ -113,14 +105,12 @@ JOIN (
 SELECT product_name
 FROM products
 WHERE list_price > ALL (
-    SELECT list_price FROM products WHERE category = 'Beverages'
-);
+    SELECT list_price FROM products WHERE category = 'Beverages');
 ***
 
 
-================================================================================
 PART B — LAB TASKS (1 to 13)
-================================================================================
+
 
 SELECT product_name
 FROM products
@@ -137,15 +127,13 @@ FROM suppliers s
 WHERE EXISTS (
     SELECT 1 FROM products p
     WHERE p.category = 'Seafood'
-      AND FIND_IN_SET(s.id, REPLACE(p.supplier_ids, ';', ',')) > 0
-);
+      AND FIND_IN_SET(s.id, REPLACE(p.supplier_ids, ';', ',')) > 0);
 ***
 
 SELECT c.first_name, c.last_name
 FROM customers c
 WHERE c.city IN (
-    SELECT s.city FROM suppliers s WHERE s.city = c.city
-);
+    SELECT s.city FROM suppliers s WHERE s.city = c.city);
 ***
 
 SELECT p.product_name, p.category
@@ -153,8 +141,7 @@ FROM products p
 WHERE p.list_price = (
     SELECT MAX(list_price)
     FROM products
-    WHERE category = p.category
-);
+    WHERE category = p.category);
 ***
 
 SELECT order_id
@@ -167,8 +154,7 @@ SELECT s.company
 FROM suppliers s
 WHERE EXISTS (
     SELECT 1 FROM customers c
-    WHERE c.country_region = s.country_region
-);
+    WHERE c.country_region = s.country_region);
 ***
 
 SELECT first_name, last_name
@@ -176,8 +162,7 @@ FROM employees
 WHERE id IN (
     SELECT employee_id FROM orders
     GROUP BY employee_id
-    HAVING COUNT(DISTINCT customer_id) > 5
-);
+    HAVING COUNT(DISTINCT customer_id) > 5);
 ***
 
 SELECT product_name, list_price
@@ -189,15 +174,13 @@ SELECT first_name, last_name
 FROM employees
 WHERE id IN (
     SELECT employee_id FROM orders
-    WHERE YEAR(order_date) = 1997
-);
+    WHERE YEAR(order_date) = 1997);
 ***
 
 SELECT DISTINCT order_id
 FROM order_details
 WHERE product_id IN (
-    SELECT id FROM products WHERE list_price > 50
-);
+    SELECT id FROM products WHERE list_price > 50);
 ***
 
 SELECT s.company
@@ -218,7 +201,5 @@ WHERE id IN (
             SELECT id FROM products
             WHERE product_name LIKE '%Chai%'
         )
-    )
-);
+    ));
 ***
-
