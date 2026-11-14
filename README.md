@@ -43,7 +43,8 @@ Folder: `CMPE-111L AICT`
 
 - **Weeks 1–3:** ERD diagram, SQL scripts, C# programs, and `.pdf`/`.docx` reports
 - **Weeks 4–6:** SQL queries (`.txt`) and `.pdf` reports
-- **Northwind sample database:** `Northwind(Data&Structure).sql`
+- **Week 7:** C# Program, Windows Report Designer, and SQL Scripts.
+- **Northwind sample database:** `Northwind.sql`
 
 Folder: `CMPE-332L DBS`
 
