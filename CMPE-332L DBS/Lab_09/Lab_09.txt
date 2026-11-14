@@ -1,0 +1,152 @@
+CREATE TABLE countries (
+    code INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    continent_name VARCHAR(100) NULL
+);
+
+***
+
+CREATE TABLE users (
+    id INT PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL CHECK (email LIKE '%@%.%'),
+    gender VARCHAR(10),
+    date_of_birth VARCHAR(20),
+    country_code INT,
+    created_at VARCHAR(50) DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (country_code) REFERENCES countries(code)
+);
+
+***
+
+CREATE TABLE merchants (
+    id INT PRIMARY KEY,
+    merchant_name VARCHAR(100) NOT NULL,
+    admin_id INT,
+    country_code INT,
+    created_at VARCHAR(50) DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (admin_id) REFERENCES users(id),
+    FOREIGN KEY (country_code) REFERENCES countries(code)
+);
+
+***
+
+ALTER TABLE merchants 
+ADD CONSTRAINT chk_india_ban CHECK (country_code != 91);
+
+***
+
+CREATE TABLE products (
+    id INT PRIMARY KEY,
+    merchant_id INT,
+    name VARCHAR(100) NOT NULL,
+    price INT NOT NULL,
+    status VARCHAR(2) NOT NULL CHECK (status IN ('A', 'NA')),
+    created_at VARCHAR(50) DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (merchant_id) REFERENCES merchants(id)
+);
+
+***
+
+CREATE TABLE orders (
+    id INT PRIMARY KEY,
+    user_id INT,
+    status VARCHAR(50),
+    created_at VARCHAR(50) DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+***
+
+CREATE TABLE order_items (
+    order_id INT,
+    product_id INT,
+    quantity INT NOT NULL CHECK (quantity >= 50),
+    PRIMARY KEY (order_id, product_id),
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+***
+
+DELIMITER //
+
+CREATE TRIGGER trg_prevent_na_product_order
+BEFORE INSERT ON order_items
+FOR EACH ROW
+BEGIN
+    DECLARE prod_status VARCHAR(2);
+    SELECT status INTO prod_status FROM products WHERE id = NEW.product_id;
+    
+    IF prod_status = 'NA' THEN
+        SIGNAL SQLSTATE '45000' 
+        SET MESSAGE_TEXT = 'Cannot order a product that is Not Available (NA).';
+    END IF;
+END //
+
+DELIMITER ;
+
+***
+
+INSERT INTO countries (code, name, continent_name) VALUES 
+(1, 'USA', 'North America'),
+(44, 'UK', 'Europe'),
+(91, 'India', 'Asia'),
+(92, 'Pakistan', 'Asia'),
+(86, 'China', 'Asia');
+
+***
+
+INSERT INTO countries (code, name, continent_name) VALUES (999, 'Unknown', NULL);
+
+***
+
+INSERT INTO users (id, full_name, email, gender, date_of_birth, country_code) VALUES
+(1, 'Alice Smith', 'alice@example.com', 'Female', '1990-05-15', 1),
+(2, 'Bob Jones', 'bob@example.com', 'Male', '1985-08-20', 44),
+(3, 'Rahul Kumar', 'rahul@example.in', 'Male', '1992-11-10', 91),
+(4, 'Sara Khan', 'sara@example.pk', 'Female', '1995-02-28', 92);
+
+***
+
+INSERT INTO merchants (id, merchant_name, admin_id, country_code) VALUES
+(1, 'US Electronics', 1, 1),
+(2, 'UK Fashion', 2, 44),
+(3, 'Delhi Textiles', 3, 91),
+(4, 'Karachi Sports', 4, 92);
+
+***
+
+INSERT INTO products (id, merchant_id, name, price, status) VALUES
+(1, 1, 'Laptop', 1000, 'A'),
+(2, 1, 'Mouse', 20, 'A'),
+(3, 2, 'T-Shirt', 15, 'A'),
+(4, 3, 'Silk Fabric', 100, 'A'),
+(5, 4, 'Cricket Bat', 50, 'NA');
+
+***
+
+INSERT INTO orders (id, user_id, status) VALUES
+(1, 1, 'Shipped'),
+(2, 2, 'Pending'),
+(3, 4, 'Processing'),
+(4, 1, 'Completed');
+
+***
+
+INSERT INTO order_items (order_id, product_id, quantity) VALUES
+(1, 1, 50),
+(1, 2, 100),
+(2, 3, 60),
+(3, 4, 50),
+(4, 1, 75);
+
+***
+
+ALTER TABLE merchants 
+DROP CONSTRAINT chk_india_ban;
+
+***
+
+INSERT INTO merchants (id, merchant_name, admin_id, country_code) VALUES
+(5, 'Mumbai Traders', 3, 91);

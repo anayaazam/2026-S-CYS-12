@@ -1,0 +1,192 @@
+-- Task 1
+SET @employeeCount = (SELECT COUNT(*) FROM Employees);
+SELECT @employeeCount AS TotalEmployees;
+***
+
+
+-- Task 2
+DELIMITER //
+CREATE PROCEDURE CheckEmployeeAge(IN BirthYear INT)
+BEGIN
+    DECLARE age INT;
+    SET age = YEAR(CURDATE()) - BirthYear;
+    IF age > 18 THEN
+        SELECT 'Adult' AS Category;
+    ELSE
+        SELECT 'Minor' AS Category;
+    END IF;
+END //
+DELIMITER ;
+-- Test with BirthYear for age 25
+CALL CheckEmployeeAge(2000);
+-- Test with BirthYear for age 16
+CALL CheckEmployeeAge(2009);
+***
+
+
+-- Task 3
+DELIMITER //
+CREATE PROCEDURE ShowLocalVar()
+BEGIN
+    DECLARE localVar INT DEFAULT 100;
+    SELECT localVar AS LocalVariableValue;
+END //
+DELIMITER ;
+-- Execute the procedure
+CALL ShowLocalVar();
+***
+
+
+-- Task 4
+SELECT 
+    EmployeeID,
+    FirstName,
+    LastName,
+    TIMESTAMPDIFF(YEAR, BirthDate, CURDATE()) AS Age,
+    CASE 
+        WHEN TIMESTAMPDIFF(YEAR, BirthDate, CURDATE()) < 30 THEN 'Young'
+        WHEN TIMESTAMPDIFF(YEAR, BirthDate, CURDATE()) BETWEEN 30 AND 50 THEN 'Middle-aged'
+        WHEN TIMESTAMPDIFF(YEAR, BirthDate, CURDATE()) > 50 THEN 'Senior'
+    END AS AgeCategory
+FROM Employees;
+***
+
+
+-- Task 5
+DELIMITER //
+CREATE PROCEDURE AddProductUnits(
+    IN p_ProductID INT, 
+    IN p_ExtraUnits INT, 
+    OUT p_TotalStock INT
+)
+BEGIN
+    DECLARE currentStock INT;    
+    SELECT UnitsInStock INTO currentStock 
+    FROM Products 
+    WHERE ProductID = p_ProductID;
+    SET p_TotalStock = currentStock + p_ExtraUnits;
+END //
+DELIMITER ;
+-- Example execution
+CALL AddProductUnits(1, 50, @newStock);
+SELECT @newStock AS CalculatedStock;
+***
+
+
+-- Task 6
+DELIMITER //
+CREATE PROCEDURE OrderCategory(IN p_Freight DECIMAL(10,2))
+BEGIN
+    SELECT 
+        p_Freight AS FreightAmount,
+        CASE 
+            WHEN p_Freight >= 100 THEN 'High Freight'
+            WHEN p_Freight >= 50 AND p_Freight < 100 THEN 'Medium Freight'
+            WHEN p_Freight < 50 THEN 'Low Freight'
+        END AS FreightCategory;
+END //
+DELIMITER ;
+-- Example execution
+CALL OrderCategory(75.50);
+***
+
+
+-- Task 7
+DELIMITER //
+CREATE PROCEDURE ShowAllProducts()
+BEGIN
+    SELECT * FROM Products;
+END //
+DELIMITER ;
+-- Execute the procedure
+CALL ShowAllProducts();
+***
+
+
+-- Task 8
+SELECT 
+    ProductID,
+    ProductName,
+    UnitsInStock,
+    CASE 
+        WHEN UnitsInStock = 0 THEN 'Out of Stock'
+        WHEN UnitsInStock BETWEEN 1 AND 20 THEN 'Low Stock'
+        WHEN UnitsInStock BETWEEN 21 AND 50 THEN 'Medium Stock'
+        WHEN UnitsInStock > 50 THEN 'High Stock'
+    END AS StockStatus
+FROM Products;
+***
+
+
+-- Task 9
+DELIMITER //
+CREATE PROCEDURE CustomerOrderCount(
+    IN p_CustomerID INT, 
+    OUT p_TotalOrders INT
+)
+BEGIN
+    SELECT COUNT(*) INTO p_TotalOrders 
+    FROM Orders 
+    WHERE CustomerID = p_CustomerID;
+END //
+DELIMITER ;
+-- Example execution
+CALL CustomerOrderCount('ALFKI', @orderCount);
+SELECT @orderCount AS TotalOrdersForCustomer;
+***
+
+
+-- Task 10
+DELIMITER //
+CREATE PROCEDURE ListEmployeeOrders(IN p_EmployeeID INT)
+BEGIN
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE v_OrderID INT;
+    DECLARE v_OrderDate DATE;    
+    -- Declare cursor to fetch orders
+    DECLARE order_cursor CURSOR FOR 
+        SELECT OrderID, OrderDate 
+        FROM Orders 
+        WHERE EmployeeID = p_EmployeeID;
+    -- Declare handler for end of data
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+    -- Create a temporary table to display multiple rows from a procedure loop
+    DROP TEMPORARY TABLE IF EXISTS TempEmployeeOrders;
+    CREATE TEMPORARY TABLE TempEmployeeOrders (OrderID INT, OrderDate DATE);
+    OPEN order_cursor;
+    read_loop: LOOP
+        FETCH order_cursor INTO v_OrderID, v_OrderDate;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
+        INSERT INTO TempEmployeeOrders VALUES (v_OrderID, v_OrderDate);
+    END LOOP;
+    CLOSE order_cursor;
+    -- Display the results
+    SELECT * FROM TempEmployeeOrders;
+END //
+DELIMITER ;
+-- Example execution
+CALL ListEmployeeOrders(1);=
+***
+
+
+-- Task 11
+DELIMITER //
+CREATE PROCEDURE CustomerCategory(IN p_CustomerID VARCHAR(10))
+BEGIN
+    DECLARE total_orders INT;    
+    SELECT COUNT(*) INTO total_orders 
+    FROM Orders 
+    WHERE CustomerID = p_CustomerID;
+    SELECT 
+        total_orders AS TotalOrders,
+        CASE 
+            WHEN total_orders >= 50 THEN 'Top Customer'
+            WHEN total_orders >= 10 AND total_orders < 50 THEN 'Regular'
+            WHEN total_orders < 10 THEN 'Occasional'
+        END AS CustomerType;
+END //
+DELIMITER ;
+-- Example execution
+CALL CustomerCategory('ALFKI');
