@@ -1,50 +1,50 @@
-QUERY 1:
+-- QUERY 1:
 SELECT first_name, last_name
 FROM employees
 WHERE id NOT IN (SELECT employee_id FROM orders);
 ***
-
-
-QUERY 2:
+ 
+ 
+-- QUERY 2:
 SELECT first_name, last_name, country_region
 FROM customers
 WHERE country_region IN ('Sweden', 'Canada');
 ***
-
-
-QUERY 3:
+ 
+ 
+-- QUERY 3:
 SELECT product_name
 FROM products
 WHERE id = ALL (
     SELECT product_id FROM order_details WHERE quantity = 10);
 ***
-
-
-QUERY 4:
+ 
+ 
+-- QUERY 4:
 SELECT product_name
 FROM products
 WHERE id = ANY (
     SELECT product_id FROM order_details WHERE quantity = 10);
 ***
-
-
-QUERY 5:
+ 
+ 
+-- QUERY 5:
 SELECT id
 FROM orders
 WHERE customer_id NOT IN (
     SELECT id FROM customers WHERE country_region = 'Germany');
 ***
-
-
-QUERY 6:
+ 
+ 
+-- QUERY 6:
 SELECT product_name, list_price
 FROM products
 WHERE list_price > ALL (
     SELECT list_price FROM products WHERE category = 'Beverages');
 ***
-
-
-QUERY 7:
+ 
+ 
+-- QUERY 7:
 SELECT first_name, last_name
 FROM employees
 WHERE id IN (
@@ -52,16 +52,16 @@ WHERE id IN (
     GROUP BY employee_id
     HAVING COUNT(id) > 10);
 ***
-
-
-QUERY 8:
+ 
+ 
+-- QUERY 8:
 SELECT product_name, list_price
 FROM products
 WHERE list_price > (SELECT AVG(list_price) FROM products);
 ***
-
-
-QUERY 9:
+ 
+ 
+-- QUERY 9:
 SELECT first_name, last_name
 FROM customers
 WHERE (city, country_region) = (
@@ -69,15 +69,16 @@ WHERE (city, country_region) = (
     FROM orders o JOIN customers c ON c.id = o.customer_id
     WHERE o.id = 30);
 ***
-
-
-QUERY 10:
+ 
+ 
+-- QUERY 10:
 SELECT first_name, last_name
 FROM customers
 WHERE id IN (SELECT DISTINCT customer_id FROM orders);
 ***
-
-QUERY 11:
+ 
+ 
+-- QUERY 11:
 SELECT *
 FROM (
     SELECT order_id, SUM(quantity) AS total_qty
@@ -86,7 +87,9 @@ FROM (
 ) AS order_totals
 WHERE total_qty > 100;
 ***
-
+ 
+ 
+-- QUERY 12:
 SELECT c.first_name, c.last_name,
        (SELECT CONCAT(e.first_name, ' ', e.last_name)
         FROM employees e
@@ -94,18 +97,18 @@ SELECT c.first_name, c.last_name,
 FROM customers c
 JOIN orders o ON o.customer_id = c.id;
 ***
-
-
-QUERY 12:
+ 
+ 
+-- QUERY 13:
 SELECT s.company
 FROM suppliers s
 WHERE EXISTS (
     SELECT 1 FROM products p
     WHERE FIND_IN_SET(s.id, REPLACE(p.supplier_ids, ';', ',')) > 0);
 ***
-
-
-QUERY 13:
+ 
+ 
+-- QUERY 14:
 SELECT first_name, last_name
 FROM employees
 WHERE id IN (
@@ -118,42 +121,53 @@ WHERE id IN (
         )
     ));
 ***
-
-
-QUERY 14:
+ 
+ 
+-- QUERY 15:
+SELECT od.order_id, od.quantity
+FROM order_details od
+JOIN (
+    SELECT AVG(quantity) AS avg_qty FROM order_details
+) AS avg_table
+WHERE od.quantity > avg_table.avg_qty;
+***
+ 
+ 
+-- QUERY 16:
 SELECT p.product_name, c.category
 FROM products p
 JOIN (
     SELECT DISTINCT category FROM products
 ) AS c ON p.category = c.category;
 ***
-
-
-QUERY 15:
+ 
+ 
+-- QUERY 17:
 SELECT product_name
 FROM products
 WHERE list_price > ALL (
     SELECT list_price FROM products WHERE category = 'Beverages');
 ***
-
-
---LAB TASKS (1 to 13)
-
-QUERY 1:
+ 
+ 
+-- LAB TASKS (1 to 13)
+ 
+ 
+-- TASK 1:
 SELECT product_name
 FROM products
 WHERE id NOT IN (SELECT product_id FROM order_details);
 ***
-
-
-QUERY 2:
+ 
+ 
+-- TASK 2:
 SELECT first_name, last_name
 FROM customers
 WHERE id NOT IN (SELECT customer_id FROM orders);
 ***
-
-
-QUERY 3:
+ 
+ 
+-- TASK 3:
 SELECT s.company
 FROM suppliers s
 WHERE EXISTS (
@@ -161,17 +175,17 @@ WHERE EXISTS (
     WHERE p.category = 'Seafood'
       AND FIND_IN_SET(s.id, REPLACE(p.supplier_ids, ';', ',')) > 0);
 ***
-
-
-QUERY 4:
+ 
+ 
+-- TASK 4:
 SELECT c.first_name, c.last_name
 FROM customers c
 WHERE c.city IN (
     SELECT s.city FROM suppliers s WHERE s.city = c.city);
 ***
-
-
-QUERY 5:
+ 
+ 
+-- TASK 5:
 SELECT p.product_name, p.category
 FROM products p
 WHERE p.list_price = (
@@ -179,26 +193,26 @@ WHERE p.list_price = (
     FROM products
     WHERE category = p.category);
 ***
-
-
-QUERY 6:
+ 
+ 
+-- TASK 6:
 SELECT order_id
 FROM order_details
 GROUP BY order_id
 HAVING SUM(quantity) > 100;
 ***
-
-
-QUERY 7:
+ 
+ 
+-- TASK 7:
 SELECT s.company
 FROM suppliers s
 WHERE EXISTS (
     SELECT 1 FROM customers c
     WHERE c.country_region = s.country_region);
 ***
-
-
-QUERY 8:
+ 
+ 
+-- TASK 8:
 SELECT first_name, last_name
 FROM employees
 WHERE id IN (
@@ -206,32 +220,33 @@ WHERE id IN (
     GROUP BY employee_id
     HAVING COUNT(DISTINCT customer_id) > 5);
 ***
-
-
-QUERY 9:
+ 
+ 
+-- TASK 9:
 SELECT product_name, list_price
 FROM products
 WHERE list_price = (SELECT MAX(list_price) FROM products);
 ***
-
-
-QUERY 10:
+ 
+ 
+-- TASK 10:
 SELECT first_name, last_name
 FROM employees
 WHERE id IN (
     SELECT employee_id FROM orders
     WHERE YEAR(order_date) = 1997);
 ***
-
-
-QUERY 11:
+ 
+ 
+-- TASK 11:
 SELECT DISTINCT order_id
 FROM order_details
 WHERE product_id IN (
     SELECT id FROM products WHERE list_price > 50);
 ***
-
-QUERY 13:
+ 
+ 
+-- TASK 12:
 SELECT s.company
 FROM suppliers s
 WHERE (
@@ -239,9 +254,9 @@ WHERE (
     WHERE FIND_IN_SET(s.id, REPLACE(p.supplier_ids, ';', ',')) > 0
 ) = 1;
 ***
-
-
-QUERY 14:
+ 
+ 
+-- TASK 13:
 SELECT first_name, last_name
 FROM employees
 WHERE id IN (
@@ -254,3 +269,4 @@ WHERE id IN (
         )
     ));
 ***
+ 

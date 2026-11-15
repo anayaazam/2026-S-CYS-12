@@ -1,10 +1,11 @@
 -- QUERY 1:
-SET @employeeCount = (SELECT COUNT(*) FROM Employees);
+SET @employeeCount = (SELECT COUNT(*) FROM employees);
 SELECT @employeeCount AS TotalEmployees;
 ***
-
-
+ 
+ 
 -- QUERY 2:
+DROP PROCEDURE IF EXISTS CheckEmployeeAge;
 DELIMITER //
 CREATE PROCEDURE CheckEmployeeAge(IN BirthYear INT)
 BEGIN
@@ -18,13 +19,14 @@ BEGIN
 END //
 DELIMITER ;
 -- Test with BirthYear for age 25
-CALL CheckEmployeeAge(2000);
+CALL CheckEmployeeAge(YEAR(CURDATE()) - 25);
 -- Test with BirthYear for age 16
-CALL CheckEmployeeAge(2009);
+CALL CheckEmployeeAge(YEAR(CURDATE()) - 16);
 ***
-
-
+ 
+ 
 -- QUERY 3:
+DROP PROCEDURE IF EXISTS ShowLocalVar;
 DELIMITER //
 CREATE PROCEDURE ShowLocalVar()
 BEGIN
@@ -35,51 +37,56 @@ DELIMITER ;
 -- Execute the procedure
 CALL ShowLocalVar();
 ***
-
-
+ 
+ 
 -- QUERY 4:
-SELECT 
-    EmployeeID,
-    FirstName,
-    LastName,
-    TIMESTAMPDIFF(YEAR, BirthDate, CURDATE()) AS Age,
-    CASE 
-        WHEN TIMESTAMPDIFF(YEAR, BirthDate, CURDATE()) < 30 THEN 'Young'
-        WHEN TIMESTAMPDIFF(YEAR, BirthDate, CURDATE()) BETWEEN 30 AND 50 THEN 'Middle-aged'
-        WHEN TIMESTAMPDIFF(YEAR, BirthDate, CURDATE()) > 50 THEN 'Senior'
+ALTER TABLE employees ADD COLUMN birth_date DATE;
+UPDATE employees SET birth_date = DATE_ADD('1965-03-15', INTERVAL id * 4 YEAR);
+SELECT
+    id AS EmployeeID,
+    first_name AS FirstName,
+    last_name AS LastName,
+    TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) AS Age,
+    CASE
+        WHEN TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) < 30 THEN 'Young'
+        WHEN TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) BETWEEN 30 AND 50 THEN 'Middle-aged'
+        WHEN TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) > 50 THEN 'Senior'
     END AS AgeCategory
-FROM Employees;
+FROM employees;
 ***
-
-
+ 
+ 
 -- QUERY 5:
+DROP PROCEDURE IF EXISTS AddProductUnits;
 DELIMITER //
 CREATE PROCEDURE AddProductUnits(
-    IN p_ProductID INT, 
-    IN p_ExtraUnits INT, 
+    IN p_ProductID INT,
+    IN p_ExtraUnits INT,
     OUT p_TotalStock INT
 )
 BEGIN
-    DECLARE currentStock INT;    
-    SELECT UnitsInStock INTO currentStock 
-    FROM Products 
-    WHERE ProductID = p_ProductID;
+    DECLARE currentStock INT;
+    SELECT COALESCE(SUM(CASE WHEN transaction_type = 1 THEN quantity ELSE -quantity END), 0)
+    INTO currentStock
+    FROM inventory_transactions
+    WHERE product_id = p_ProductID;
     SET p_TotalStock = currentStock + p_ExtraUnits;
 END //
 DELIMITER ;
 -- Example execution
-CALL AddProductUnits(1, 50, @newStock);
+CALL AddProductUnits(3, 50, @newStock);
 SELECT @newStock AS CalculatedStock;
 ***
-
-
+ 
+ 
 -- QUERY 6:
+DROP PROCEDURE IF EXISTS OrderCategory;
 DELIMITER //
 CREATE PROCEDURE OrderCategory(IN p_Freight DECIMAL(10,2))
 BEGIN
-    SELECT 
+    SELECT
         p_Freight AS FreightAmount,
-        CASE 
+        CASE
             WHEN p_Freight >= 100 THEN 'High Freight'
             WHEN p_Freight >= 50 AND p_Freight < 100 THEN 'Medium Freight'
             WHEN p_Freight < 50 THEN 'Low Freight'
@@ -89,65 +96,74 @@ DELIMITER ;
 -- Example execution
 CALL OrderCategory(75.50);
 ***
-
-
+ 
+ 
 -- QUERY 7:
+DROP PROCEDURE IF EXISTS ShowAllProducts;
 DELIMITER //
 CREATE PROCEDURE ShowAllProducts()
 BEGIN
-    SELECT * FROM Products;
+    SELECT * FROM products;
 END //
 DELIMITER ;
 -- Execute the procedure
 CALL ShowAllProducts();
 ***
-
-
+ 
+ 
 -- QUERY 8:
-SELECT 
-    ProductID,
-    ProductName,
-    UnitsInStock,
-    CASE 
-        WHEN UnitsInStock = 0 THEN 'Out of Stock'
-        WHEN UnitsInStock BETWEEN 1 AND 20 THEN 'Low Stock'
-        WHEN UnitsInStock BETWEEN 21 AND 50 THEN 'Medium Stock'
-        WHEN UnitsInStock > 50 THEN 'High Stock'
+SELECT
+    s.id AS ProductID,
+    s.product_name AS ProductName,
+    s.units_in_stock AS UnitsInStock,
+    CASE
+        WHEN s.units_in_stock = 0 THEN 'Out of Stock'
+        WHEN s.units_in_stock BETWEEN 1 AND 20 THEN 'Low Stock'
+        WHEN s.units_in_stock BETWEEN 21 AND 50 THEN 'Medium Stock'
+        WHEN s.units_in_stock > 50 THEN 'High Stock'
     END AS StockStatus
-FROM Products;
+FROM (
+    SELECT p.id, p.product_name,
+           COALESCE(SUM(CASE WHEN t.transaction_type = 1 THEN t.quantity ELSE -t.quantity END), 0) AS units_in_stock
+    FROM products p
+    LEFT JOIN inventory_transactions t ON t.product_id = p.id
+    GROUP BY p.id, p.product_name
+) AS s;
 ***
-
-
+ 
+ 
 -- QUERY 9:
+DROP PROCEDURE IF EXISTS CustomerOrderCount;
 DELIMITER //
 CREATE PROCEDURE CustomerOrderCount(
-    IN p_CustomerID INT, 
+    IN p_CustomerID INT,
     OUT p_TotalOrders INT
 )
 BEGIN
-    SELECT COUNT(*) INTO p_TotalOrders 
-    FROM Orders 
-    WHERE CustomerID = p_CustomerID;
+    SELECT COUNT(*) INTO p_TotalOrders
+    FROM orders
+    WHERE customer_id = p_CustomerID;
 END //
 DELIMITER ;
 -- Example execution
-CALL CustomerOrderCount('ALFKI', @orderCount);
+CALL CustomerOrderCount(1, @orderCount);
 SELECT @orderCount AS TotalOrdersForCustomer;
 ***
-
-
+ 
+ 
 -- QUERY 10:
+DROP PROCEDURE IF EXISTS ListEmployeeOrders;
 DELIMITER //
 CREATE PROCEDURE ListEmployeeOrders(IN p_EmployeeID INT)
 BEGIN
     DECLARE done INT DEFAULT FALSE;
     DECLARE v_OrderID INT;
-    DECLARE v_OrderDate DATE;    
+    DECLARE v_OrderDate DATE;
     -- Declare cursor to fetch orders
-    DECLARE order_cursor CURSOR FOR 
-        SELECT OrderID, OrderDate 
-        FROM Orders 
-        WHERE EmployeeID = p_EmployeeID;
+    DECLARE order_cursor CURSOR FOR
+        SELECT id, order_date
+        FROM orders
+        WHERE employee_id = p_EmployeeID;
     -- Declare handler for end of data
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
     -- Create a temporary table to display multiple rows from a procedure loop
@@ -167,21 +183,22 @@ BEGIN
 END //
 DELIMITER ;
 -- Example execution
-CALL ListEmployeeOrders(1);=
+CALL ListEmployeeOrders(1);
 ***
-
-
+ 
+ 
 -- QUERY 11:
+DROP PROCEDURE IF EXISTS CustomerCategory;
 DELIMITER //
-CREATE PROCEDURE CustomerCategory(IN p_CustomerID VARCHAR(10))
+CREATE PROCEDURE CustomerCategory(IN p_CustomerID INT)
 BEGIN
-    DECLARE total_orders INT;    
-    SELECT COUNT(*) INTO total_orders 
-    FROM Orders 
-    WHERE CustomerID = p_CustomerID;
-    SELECT 
+    DECLARE total_orders INT;
+    SELECT COUNT(*) INTO total_orders
+    FROM orders
+    WHERE customer_id = p_CustomerID;
+    SELECT
         total_orders AS TotalOrders,
-        CASE 
+        CASE
             WHEN total_orders >= 50 THEN 'Top Customer'
             WHEN total_orders >= 10 AND total_orders < 50 THEN 'Regular'
             WHEN total_orders < 10 THEN 'Occasional'
@@ -189,4 +206,7 @@ BEGIN
 END //
 DELIMITER ;
 -- Example execution
-CALL CustomerCategory('ALFKI');
+CALL CustomerCategory(1);
+***
+ 
+

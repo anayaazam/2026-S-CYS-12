@@ -1,227 +1,250 @@
-CREATE DATABASE OnlineRetailStore;
-USE OnlineRetailStore;
-
+-- QUERY 1:
+CREATE DATABASE online_retail_store;
+USE online_retail_store;
 ***
-
-CREATE TABLE Customers (
-    CustomerID INT AUTO_INCREMENT PRIMARY KEY,
-    CustomerName VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) NOT NULL
+ 
+ 
+-- QUERY 2:
+CREATE TABLE customers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL
 );
-
 ***
-
-CREATE TABLE Categories (
-    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
-    CategoryName VARCHAR(50) NOT NULL
+ 
+ 
+-- QUERY 3:
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(50) NOT NULL
 );
-
 ***
-
-CREATE TABLE Products (
-    ProductID INT AUTO_INCREMENT PRIMARY KEY,
-    ProductName VARCHAR(100) NOT NULL,
-    CategoryID INT,
-    Price DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
+ 
+ 
+-- QUERY 4:
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(100) NOT NULL,
+    category_id INT,
+    price DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (category_id) REFERENCES categories(id)
 );
-
 ***
-
-CREATE TABLE Orders (
-    OrderID INT AUTO_INCREMENT PRIMARY KEY,
-    CustomerID INT,
-    OrderDate DATE NOT NULL,
-    TotalAmount DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+ 
+ 
+-- QUERY 5:
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE NOT NULL,
+    total_amount DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
-
 ***
-
-CREATE TABLE OrderDetails (
-    OrderDetailID INT AUTO_INCREMENT PRIMARY KEY,
-    OrderID INT,
-    ProductID INT,
-    Quantity INT NOT NULL,
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
-    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+ 
+ 
+-- QUERY 6:
+CREATE TABLE order_details (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    quantity INT NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
 );
-
 ***
-
+ 
+ 
+-- QUERY 7:
 DELIMITER //
-
-CREATE PROCEDURE GenerateBulkData()
+CREATE PROCEDURE generate_bulk_data()
 BEGIN
     DECLARE i INT DEFAULT 1;
     DECLARE rand_cust INT;
     DECLARE rand_prod INT;
     DECLARE rand_qty INT;
     DECLARE rand_price DECIMAL(10,2);
-
     -- 1. Insert Categories
-    INSERT INTO Categories (CategoryName) VALUES ('Electronics'), ('Clothing'), ('Home'), ('Books'), ('Toys');
-
+    INSERT INTO categories (category_name) VALUES ('Electronics'), ('Clothing'), ('Home'), ('Books'), ('Toys');
     -- 2. Insert 50,000 Customers
     WHILE i <= 50000 DO
-        INSERT INTO Customers (CustomerName, Email) 
+        INSERT INTO customers (customer_name, email)
         VALUES (CONCAT('Customer ', i), CONCAT('customer', i, '@example.com'));
         SET i = i + 1;
     END WHILE;
-
     -- 3. Insert 1,000 Products
     SET i = 1;
     WHILE i <= 1000 DO
-        INSERT INTO Products (ProductName, CategoryID, Price) 
+        INSERT INTO products (product_name, category_id, price)
         VALUES (CONCAT('Product ', i), FLOOR(1 + RAND() * 5), ROUND(10 + RAND() * 500, 2));
         SET i = i + 1;
     END WHILE;
-
     -- 4. Insert 50,000 Orders
     SET i = 1;
     WHILE i <= 50000 DO
         SET rand_cust = FLOOR(1 + RAND() * 50000);
-        INSERT INTO Orders (CustomerID, OrderDate, TotalAmount) 
+        INSERT INTO orders (customer_id, order_date, total_amount)
         VALUES (rand_cust, DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 365) DAY), ROUND(50 + RAND() * 1000, 2));
         SET i = i + 1;
     END WHILE;
-
-    -- 5. Insert 50,000 OrderDetails
+    -- 5. Insert 50,000 order_details
     SET i = 1;
     WHILE i <= 50000 DO
         SET rand_prod = FLOOR(1 + RAND() * 1000);
         SET rand_qty = FLOOR(1 + RAND() * 5);
-        INSERT INTO OrderDetails (OrderID, ProductID, Quantity) 
+        INSERT INTO order_details (order_id, product_id, quantity)
         VALUES (i, rand_prod, rand_qty);
         SET i = i + 1;
     END WHILE;
-    
 END //
-
 DELIMITER ;
-
 ***
-
-CALL GenerateBulkData();
-
+ 
+ 
+-- QUERY 8:
+CALL generate_bulk_data();
 ***
-
-EXPLAIN SELECT * FROM Customers WHERE CustomerName = 'Customer 45000';
-
+ 
+ 
+-- QUERY 9:
+EXPLAIN SELECT * FROM customers WHERE customer_name = 'Customer 45000';
 ***
-
-CREATE INDEX idx_customer_name ON Customers(CustomerName);
-
+ 
+ 
+-- QUERY 10:
+CREATE INDEX idx_customer_name ON customers(customer_name);
 ***
-
-EXPLAIN SELECT * FROM Customers WHERE CustomerName = 'Customer 45000';
-
+ 
+ 
+-- QUERY 11:
+EXPLAIN SELECT * FROM customers WHERE customer_name = 'Customer 45000';
 ***
-
-EXPLAIN SELECT * FROM Orders WHERE OrderDate = '2025-11-01';
-
+ 
+ 
+-- QUERY 12:
+EXPLAIN SELECT * FROM orders WHERE order_date = '2025-11-01';
 ***
-
-CREATE INDEX idx_order_date ON Orders(OrderDate);
-
+ 
+ 
+-- QUERY 13:
+CREATE INDEX idx_order_date ON orders(order_date);
 ***
-
-EXPLAIN SELECT * FROM Orders WHERE OrderDate = '2025-11-01';
-
+ 
+ 
+-- QUERY 14:
+EXPLAIN SELECT * FROM orders WHERE order_date = '2025-11-01';
 ***
-
-CREATE INDEX idx_order_customer_composite ON Orders(CustomerID, OrderDate);
-
+ 
+ 
+-- QUERY 15:
+CREATE INDEX idx_order_customer_composite ON orders(customer_id, order_date);
 ***
-
-SHOW INDEX FROM Orders;
-
+ 
+ 
+-- QUERY 16:
+SHOW INDEX FROM orders;
 ***
-
-CREATE VIEW CompleteOrderView AS
-SELECT 
-    o.OrderID, 
-    o.OrderDate, 
-    c.CustomerName, 
-    p.ProductName, 
-    od.Quantity, 
-    p.Price
-FROM Orders o
-JOIN Customers c ON o.CustomerID = c.CustomerID
-JOIN OrderDetails od ON o.OrderID = od.OrderID
-JOIN Products p ON od.ProductID = p.ProductID;
-
+ 
+ 
+-- QUERY 17:
+CREATE VIEW complete_order_view AS
+SELECT
+    o.id AS order_id,
+    o.order_date,
+    c.customer_name,
+    p.product_name,
+    od.quantity,
+    p.price
+FROM orders o
+JOIN customers c ON o.customer_id = c.id
+JOIN order_details od ON o.id = od.order_id
+JOIN products p ON od.product_id = p.id;
 ***
-
-SELECT * FROM CompleteOrderView LIMIT 10;
-
+ 
+ 
+-- QUERY 18:
+SELECT * FROM complete_order_view LIMIT 10;
 ***
-
-UPDATE CompleteOrderView 
-SET Quantity = 10 
-WHERE OrderID = 5;
-
+ 
+ 
+-- QUERY 19:
+UPDATE complete_order_view
+SET quantity = 10
+WHERE order_id = 5;
 ***
-
-DELETE FROM CompleteOrderView 
-WHERE OrderID = 6;
-
+ 
+ 
+-- QUERY 20:
+DELETE FROM complete_order_view
+WHERE order_id = 6;
 ***
-
-SELECT * FROM Orders WHERE OrderID = 6;
-
+ 
+ 
+-- QUERY 21:
+SELECT * FROM orders WHERE id = 6;
 ***
-
-CREATE TABLE MaterializedSalesPerProduct AS
-SELECT 
-    p.ProductID, 
-    p.ProductName, 
-    SUM(od.Quantity * p.Price) AS TotalSales
-FROM Products p
-JOIN OrderDetails od ON p.ProductID = od.ProductID
-GROUP BY p.ProductID, p.ProductName;
-
+ 
+ 
+-- QUERY 22:
+CREATE TABLE materialized_sales_per_product AS
+SELECT
+    p.id AS product_id,
+    p.product_name,
+    SUM(od.quantity * p.price) AS total_sales
+FROM products p
+JOIN order_details od ON p.id = od.product_id
+GROUP BY p.id, p.product_name;
 ***
-
-CREATE TABLE MaterializedOrdersPerCustomer AS
-SELECT 
-    c.CustomerID, 
-    c.CustomerName, 
-    COUNT(o.OrderID) AS TotalOrders
-FROM Customers c
-JOIN Orders o ON c.CustomerID = o.CustomerID
-GROUP BY c.CustomerID, c.CustomerName;
-
+ 
+ 
+-- QUERY 23:
+CREATE TABLE materialized_orders_per_customer AS
+SELECT
+    c.id AS customer_id,
+    c.customer_name,
+    COUNT(o.id) AS total_orders
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+GROUP BY c.id, c.customer_name;
 ***
-
-SELECT * FROM MaterializedSalesPerProduct LIMIT 5;
-
+ 
+ 
+-- QUERY 24:
+SELECT * FROM materialized_sales_per_product LIMIT 5;
 ***
-
-TRUNCATE TABLE MaterializedSalesPerProduct;
-
+ 
+ 
+-- QUERY 25:
+TRUNCATE TABLE materialized_sales_per_product;
 ***
-
-INSERT INTO MaterializedSalesPerProduct
-SELECT 
-    p.ProductID, 
-    p.ProductName, 
-    SUM(od.Quantity * p.Price) AS TotalSales
-FROM Products p
-JOIN OrderDetails od ON p.ProductID = od.ProductID
-GROUP BY p.ProductID, p.ProductName;
-
+ 
+ 
+-- QUERY 26:
+INSERT INTO materialized_sales_per_product
+SELECT
+    p.id AS product_id,
+    p.product_name,
+    SUM(od.quantity * p.price) AS total_sales
+FROM products p
+JOIN order_details od ON p.id = od.product_id
+GROUP BY p.id, p.product_name;
 ***
-
-ALTER TABLE Customers 
-ADD PhoneNumber VARCHAR(15);
-
+ 
+ 
+-- QUERY 27:
+ALTER TABLE customers
+ADD phone_number VARCHAR(15);
 ***
-
-ALTER TABLE Customers 
-MODIFY Email VARCHAR(255) NOT NULL;
-
+ 
+ 
+-- QUERY 28:
+ALTER TABLE customers
+MODIFY email VARCHAR(255) NOT NULL;
 ***
-
-ALTER TABLE Customers 
-DROP COLUMN PhoneNumber;
+ 
+ 
+-- QUERY 29:
+ALTER TABLE customers
+DROP COLUMN phone_number;
+***
+ 

@@ -1,4 +1,4 @@
-QUERY 1: Cartesian Product of Employees and Shippers
+-- QUERY 1: Cartesian Product of Employees and Shippers
 SELECT 
     e.id AS EmployeeID,
     CONCAT(e.first_name, ' ', e.last_name) AS EmployeeName,
@@ -9,7 +9,7 @@ CROSS JOIN shippers s;
 ***
 
 
-QUERY 2: Customer-Order-Shipper Combinations (First 3 Chars Match)
+-- QUERY 2: Customer-Order-Shipper Combinations (First 3 Chars Match)
 SELECT 
     c.id AS CustomerID,
     CONCAT(c.first_name, ' ', c.last_name) AS CustomerName,
@@ -23,7 +23,7 @@ WHERE LEFT(c.first_name, 3) = LEFT(s.company, 3);
 ***
 
 
-QUERY 3: Employee Self-Pairs (No Duplicates)
+-- QUERY 3: Employee Self-Pairs (No Duplicates)
 SELECT 
     e1.id AS EmployeeID,
     CONCAT(e1.first_name, ' ', e1.last_name) AS Employee1Name,
@@ -35,7 +35,7 @@ WHERE e1.id < e2.id;
 ***
 
 
-QUERY 4: Full Order Details
+-- QUERY 4: Full Order Details
 SELECT 
     o.id AS OrderID,
     CONCAT(c.first_name, ' ', c.last_name) AS CustomerName,
@@ -52,7 +52,7 @@ INNER JOIN shippers s ON o.shipper_id = s.id;
 ***
 
 
-QUERY 5: Products Never Ordered
+-- QUERY 5: Products Never Ordered
 S
     p.id AS ProductID,
     p.product_name AS ProductName,
@@ -64,7 +64,7 @@ WHERE od.id IS NULL;
 ***
 
 
-QUERY 6: Employees With No Orders in Last 6 Months of a Year
+-- QUERY 6: Employees With No Orders in Last 6 Months of a Year
 SELECT 
     e.id AS EmployeeID,
     CONCAT(e.first_name, ' ', e.last_name) AS EmployeeName
@@ -77,7 +77,7 @@ WHERE o.id IS NULL;
 ***
 
 
-QUERY 7: All Orders (Including Missing Employee/Customer)
+-- QUERY 7: All Orders (Including Missing Employee/Customer)
 SELECT 
     o.id AS OrderID,
     o.customer_id AS CustomerID,
@@ -100,7 +100,7 @@ RIGHT JOIN employees e ON o.employee_id = e.id;
 ***
 
 
-QUERY 8: Customers + Orders ("No Order Placed")
+-- QUERY 8: Customers + Orders ("No Order Placed")
 SELECT 
     c.id AS CustomerID,
     CONCAT(c.first_name, ' ', c.last_name) AS CustomerName,
@@ -110,7 +110,7 @@ LEFT JOIN orders o ON c.id = o.customer_id;
 ***
 
 
-QUERY 9: Orders Before 9 AM or After 5 PM
+-- QUERY 9: Orders Before 9 AM or After 5 PM
 SELECT 
     o.id AS OrderID,
     o.order_date AS OrderDate,
@@ -121,7 +121,7 @@ WHERE HOUR(o.order_date) < 9
 ***
 
 
-QUERY 10: Employee Pairs Who Served Same Product
+-- QUERY 10: Employee Pairs Who Served Same Product
 SELECT DISTINCT
     p.id AS ProductID,
     p.product_name AS ProductName,
@@ -140,7 +140,7 @@ WHERE e1.id < e2.id;
 ***
 
 
-QUERY 11: All Suppliers (Including Those With No Products)
+-- QUERY 11: All Suppliers (Including Those With No Products)
 SELECT 
     s.id AS SupplierID,
     s.company AS SupplierName
@@ -148,7 +148,7 @@ FROM suppliers s;
 ***
 
 
-QUERY 12: Customers Who Never Placed an Order
+-- QUERY 12: Customers Who Never Placed an Order
 SELECT 
     c.id AS CustomerID,
     CONCAT(c.first_name, ' ', c.last_name) AS CustomerName
@@ -158,7 +158,7 @@ WHERE o.id IS NULL;
 ***
 
 
-QUERY 13: Customer Pairs Who Ordered on Same Date
+-- QUERY 13: Customer Pairs Who Ordered on Same Date
 SELECT DISTINCT
     c1.id AS Customer1ID,
     CONCAT(c1.first_name, ' ', c1.last_name) AS Customer1Name,
@@ -173,7 +173,7 @@ WHERE c1.id < c2.id;
 ***
 
 
-QUERY 14: Employee Pairs Who Served Same Customer
+-- QUERY 14: Employee Pairs Who Served Same Customer
 SELECT DISTINCT
     c.id AS CustomerID,
     CONCAT(c.first_name, ' ', c.last_name) AS CustomerName,
