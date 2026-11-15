@@ -1,10 +1,10 @@
--- Task 1
+-- QUERY 1:
 SET @employeeCount = (SELECT COUNT(*) FROM Employees);
 SELECT @employeeCount AS TotalEmployees;
 ***
 
 
--- Task 2
+-- QUERY 2:
 DELIMITER //
 CREATE PROCEDURE CheckEmployeeAge(IN BirthYear INT)
 BEGIN
@@ -24,7 +24,7 @@ CALL CheckEmployeeAge(2009);
 ***
 
 
--- Task 3
+-- QUERY 3:
 DELIMITER //
 CREATE PROCEDURE ShowLocalVar()
 BEGIN
@@ -37,7 +37,7 @@ CALL ShowLocalVar();
 ***
 
 
--- Task 4
+-- QUERY 4:
 SELECT 
     EmployeeID,
     FirstName,
@@ -52,7 +52,7 @@ FROM Employees;
 ***
 
 
--- Task 5
+-- QUERY 5:
 DELIMITER //
 CREATE PROCEDURE AddProductUnits(
     IN p_ProductID INT, 
@@ -73,7 +73,7 @@ SELECT @newStock AS CalculatedStock;
 ***
 
 
--- Task 6
+-- QUERY 6:
 DELIMITER //
 CREATE PROCEDURE OrderCategory(IN p_Freight DECIMAL(10,2))
 BEGIN
@@ -91,7 +91,7 @@ CALL OrderCategory(75.50);
 ***
 
 
--- Task 7
+-- QUERY 7:
 DELIMITER //
 CREATE PROCEDURE ShowAllProducts()
 BEGIN
@@ -103,7 +103,7 @@ CALL ShowAllProducts();
 ***
 
 
--- Task 8
+-- QUERY 8:
 SELECT 
     ProductID,
     ProductName,
@@ -118,7 +118,7 @@ FROM Products;
 ***
 
 
--- Task 9
+-- QUERY 9:
 DELIMITER //
 CREATE PROCEDURE CustomerOrderCount(
     IN p_CustomerID INT, 
@@ -136,7 +136,7 @@ SELECT @orderCount AS TotalOrdersForCustomer;
 ***
 
 
--- Task 10
+-- QUERY 10:
 DELIMITER //
 CREATE PROCEDURE ListEmployeeOrders(IN p_EmployeeID INT)
 BEGIN
@@ -171,7 +171,7 @@ CALL ListEmployeeOrders(1);=
 ***
 
 
--- Task 11
+-- QUERY 11:
 DELIMITER //
 CREATE PROCEDURE CustomerCategory(IN p_CustomerID VARCHAR(10))
 BEGIN

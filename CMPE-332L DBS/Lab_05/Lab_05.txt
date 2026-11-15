@@ -1,9 +1,11 @@
+QUERY 1:
 SELECT Country, COUNT(CustomerID) AS Total_Customers
 FROM Customers
 GROUP BY Country;
 ***
 
 
+QUERY 2:
 SELECT c.CategoryID, c.CategoryName, COUNT(p.ProductID) AS Total_Products
 FROM Categories c
 JOIN Products p ON c.CategoryID = p.CategoryID
@@ -11,6 +13,7 @@ GROUP BY c.CategoryID, c.CategoryName;
 ***
 
 
+QUERY 3:
 SELECT e.EmployeeID, e.LastName, COUNT(o.OrderID) AS Total_Orders
 FROM Employees e
 JOIN Orders o ON e.EmployeeID = o.EmployeeID
@@ -18,6 +21,7 @@ GROUP BY e.EmployeeID, e.LastName;
 ***
 
 
+QUERY 4
 SELECT p.ProductID, p.ProductName, SUM(od.Quantity) AS Total_Quantity
 FROM Products p
 JOIN [Order Details] od ON p.ProductID = od.ProductID
@@ -25,6 +29,7 @@ GROUP BY p.ProductID, p.ProductName;
 ***
 
 
+QUERY 5:
 SELECT s.ShipperID, s.CompanyName AS ShipperName, COUNT(o.OrderID) AS Total_Orders
 FROM Shippers s
 JOIN Orders o ON s.ShipperID = o.ShipVia
@@ -32,6 +37,7 @@ GROUP BY s.ShipperID, s.CompanyName;
 ***
 
 
+QUERY 6:
 SELECT c.CustomerID, c.CompanyName AS CustomerName, COUNT(o.OrderID) AS Total_Orders
 FROM Customers c
 JOIN Orders o ON c.CustomerID = o.CustomerID
@@ -40,6 +46,7 @@ HAVING COUNT(o.OrderID) > 5;
 ***
 
 
+QUERY 7:
 SELECT p.ProductID, p.ProductName, AVG(od.Quantity) AS Avg_Quantity
 FROM Products p
 JOIN [Order Details] od ON p.ProductID = od.ProductID
@@ -47,6 +54,7 @@ GROUP BY p.ProductID, p.ProductName;
 ***
 
 
+QUERY 8:
 SELECT p.ProductID, p.ProductName, SUM(od.Quantity) AS Total_Quantity
 FROM Products p
 JOIN [Order Details] od ON p.ProductID = od.ProductID
@@ -55,6 +63,7 @@ ORDER BY Total_Quantity DESC;
 ***
 
 
+QUERY 9:
 SELECT MONTH(OrderDate) AS OrderMonth, COUNT(OrderID) AS Total_Orders
 FROM Orders
 GROUP BY MONTH(OrderDate)
@@ -62,6 +71,7 @@ ORDER BY OrderMonth;
 ***
 
 
+QUERY 10:
 SELECT c.CategoryID, c.CategoryName, SUM(od.Quantity) AS Total_SalesQuantity
 FROM Categories c
 JOIN Products p ON c.CategoryID = p.CategoryID
@@ -70,6 +80,7 @@ GROUP BY c.CategoryID, c.CategoryName;
 ***
 
 
+QUERY 11:
 SELECT e.EmployeeID, e.LastName, COUNT(o.OrderID) AS Total_Orders
 FROM Employees e
 JOIN Orders o ON e.EmployeeID = o.EmployeeID
@@ -78,6 +89,7 @@ HAVING COUNT(o.OrderID) > 20;
 ***
 
 
+QUERY 12:
 SELECT p.ProductID, p.ProductName, SUM(od.Quantity) AS Total_Quantity
 FROM Products p
 JOIN [Order Details] od ON p.ProductID = od.ProductID
@@ -86,6 +98,7 @@ HAVING SUM(od.Quantity) > 50;
 ***
 
 
+QUERY 13:
 SELECT YEAR(OrderDate) AS OrderYear, COUNT(OrderID) AS Total_Orders
 FROM Orders
 GROUP BY YEAR(OrderDate)
@@ -93,6 +106,7 @@ ORDER BY OrderYear;
 ***
 
 
+QUERY 14:
 SELECT e.EmployeeID, e.LastName, COUNT(o.OrderID) AS Total_Orders
 FROM Employees e
 LEFT JOIN Orders o ON e.EmployeeID = o.EmployeeID
@@ -100,6 +114,7 @@ GROUP BY e.EmployeeID, e.LastName;
 ***
 
 
+QUERY 15:
 SELECT p.ProductID, p.ProductName
 FROM Products p
 LEFT JOIN [Order Details] od ON p.ProductID = od.ProductID
@@ -107,13 +122,14 @@ WHERE od.ProductID IS NULL;
 ***
 
 
+QUERY 16:
 SELECT c.Country, COUNT(o.OrderID) AS Total_Orders
 FROM Customers c
 JOIN Orders o ON c.CustomerID = o.CustomerID
 GROUP BY c.Country;
 ***
 
-
+QUERY 17:
 SELECT e.EmployeeID, e.LastName, COUNT(DISTINCT od.ProductID) AS Unique_Products_Count
 FROM Employees e
 JOIN Orders o ON e.EmployeeID = o.EmployeeID
