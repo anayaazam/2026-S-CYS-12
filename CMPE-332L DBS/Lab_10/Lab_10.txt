@@ -1,0 +1,227 @@
+CREATE DATABASE OnlineRetailStore;
+USE OnlineRetailStore;
+
+***
+
+CREATE TABLE Customers (
+    CustomerID INT AUTO_INCREMENT PRIMARY KEY,
+    CustomerName VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL
+);
+
+***
+
+CREATE TABLE Categories (
+    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
+    CategoryName VARCHAR(50) NOT NULL
+);
+
+***
+
+CREATE TABLE Products (
+    ProductID INT AUTO_INCREMENT PRIMARY KEY,
+    ProductName VARCHAR(100) NOT NULL,
+    CategoryID INT,
+    Price DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
+);
+
+***
+
+CREATE TABLE Orders (
+    OrderID INT AUTO_INCREMENT PRIMARY KEY,
+    CustomerID INT,
+    OrderDate DATE NOT NULL,
+    TotalAmount DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+***
+
+CREATE TABLE OrderDetails (
+    OrderDetailID INT AUTO_INCREMENT PRIMARY KEY,
+    OrderID INT,
+    ProductID INT,
+    Quantity INT NOT NULL,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+);
+
+***
+
+DELIMITER //
+
+CREATE PROCEDURE GenerateBulkData()
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    DECLARE rand_cust INT;
+    DECLARE rand_prod INT;
+    DECLARE rand_qty INT;
+    DECLARE rand_price DECIMAL(10,2);
+
+    -- 1. Insert Categories
+    INSERT INTO Categories (CategoryName) VALUES ('Electronics'), ('Clothing'), ('Home'), ('Books'), ('Toys');
+
+    -- 2. Insert 50,000 Customers
+    WHILE i <= 50000 DO
+        INSERT INTO Customers (CustomerName, Email) 
+        VALUES (CONCAT('Customer ', i), CONCAT('customer', i, '@example.com'));
+        SET i = i + 1;
+    END WHILE;
+
+    -- 3. Insert 1,000 Products
+    SET i = 1;
+    WHILE i <= 1000 DO
+        INSERT INTO Products (ProductName, CategoryID, Price) 
+        VALUES (CONCAT('Product ', i), FLOOR(1 + RAND() * 5), ROUND(10 + RAND() * 500, 2));
+        SET i = i + 1;
+    END WHILE;
+
+    -- 4. Insert 50,000 Orders
+    SET i = 1;
+    WHILE i <= 50000 DO
+        SET rand_cust = FLOOR(1 + RAND() * 50000);
+        INSERT INTO Orders (CustomerID, OrderDate, TotalAmount) 
+        VALUES (rand_cust, DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 365) DAY), ROUND(50 + RAND() * 1000, 2));
+        SET i = i + 1;
+    END WHILE;
+
+    -- 5. Insert 50,000 OrderDetails
+    SET i = 1;
+    WHILE i <= 50000 DO
+        SET rand_prod = FLOOR(1 + RAND() * 1000);
+        SET rand_qty = FLOOR(1 + RAND() * 5);
+        INSERT INTO OrderDetails (OrderID, ProductID, Quantity) 
+        VALUES (i, rand_prod, rand_qty);
+        SET i = i + 1;
+    END WHILE;
+    
+END //
+
+DELIMITER ;
+
+***
+
+CALL GenerateBulkData();
+
+***
+
+EXPLAIN SELECT * FROM Customers WHERE CustomerName = 'Customer 45000';
+
+***
+
+CREATE INDEX idx_customer_name ON Customers(CustomerName);
+
+***
+
+EXPLAIN SELECT * FROM Customers WHERE CustomerName = 'Customer 45000';
+
+***
+
+EXPLAIN SELECT * FROM Orders WHERE OrderDate = '2025-11-01';
+
+***
+
+CREATE INDEX idx_order_date ON Orders(OrderDate);
+
+***
+
+EXPLAIN SELECT * FROM Orders WHERE OrderDate = '2025-11-01';
+
+***
+
+CREATE INDEX idx_order_customer_composite ON Orders(CustomerID, OrderDate);
+
+***
+
+SHOW INDEX FROM Orders;
+
+***
+
+CREATE VIEW CompleteOrderView AS
+SELECT 
+    o.OrderID, 
+    o.OrderDate, 
+    c.CustomerName, 
+    p.ProductName, 
+    od.Quantity, 
+    p.Price
+FROM Orders o
+JOIN Customers c ON o.CustomerID = c.CustomerID
+JOIN OrderDetails od ON o.OrderID = od.OrderID
+JOIN Products p ON od.ProductID = p.ProductID;
+
+***
+
+SELECT * FROM CompleteOrderView LIMIT 10;
+
+***
+
+UPDATE CompleteOrderView 
+SET Quantity = 10 
+WHERE OrderID = 5;
+
+***
+
+DELETE FROM CompleteOrderView 
+WHERE OrderID = 6;
+
+***
+
+SELECT * FROM Orders WHERE OrderID = 6;
+
+***
+
+CREATE TABLE MaterializedSalesPerProduct AS
+SELECT 
+    p.ProductID, 
+    p.ProductName, 
+    SUM(od.Quantity * p.Price) AS TotalSales
+FROM Products p
+JOIN OrderDetails od ON p.ProductID = od.ProductID
+GROUP BY p.ProductID, p.ProductName;
+
+***
+
+CREATE TABLE MaterializedOrdersPerCustomer AS
+SELECT 
+    c.CustomerID, 
+    c.CustomerName, 
+    COUNT(o.OrderID) AS TotalOrders
+FROM Customers c
+JOIN Orders o ON c.CustomerID = o.CustomerID
+GROUP BY c.CustomerID, c.CustomerName;
+
+***
+
+SELECT * FROM MaterializedSalesPerProduct LIMIT 5;
+
+***
+
+TRUNCATE TABLE MaterializedSalesPerProduct;
+
+***
+
+INSERT INTO MaterializedSalesPerProduct
+SELECT 
+    p.ProductID, 
+    p.ProductName, 
+    SUM(od.Quantity * p.Price) AS TotalSales
+FROM Products p
+JOIN OrderDetails od ON p.ProductID = od.ProductID
+GROUP BY p.ProductID, p.ProductName;
+
+***
+
+ALTER TABLE Customers 
+ADD PhoneNumber VARCHAR(15);
+
+***
+
+ALTER TABLE Customers 
+MODIFY Email VARCHAR(255) NOT NULL;
+
+***
+
+ALTER TABLE Customers 
+DROP COLUMN PhoneNumber;
